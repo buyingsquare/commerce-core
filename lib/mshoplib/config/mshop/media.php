@@ -48,7 +48,7 @@ return array(
 							:joins
 							WHERE :cond
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							LIMIT :size OFFSET :start
+							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 						'
 					),
 					'count' => array(
@@ -85,7 +85,7 @@ return array(
 							WHERE :cond
 							GROUP BY :key, mmedli."id" /*-columns*/ , :columns /*columns-*/
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							LIMIT :size OFFSET :start
+							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 						) AS list
 						GROUP BY "key"
 					'
@@ -133,7 +133,7 @@ return array(
 							mmedli."config", mmedli."pos", mmedli."status", mmedli."mtime",
 							mmedli."editor", mmedli."ctime" /*-columns*/ , :columns /*columns-*/
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						LIMIT :size OFFSET :start
+						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -199,7 +199,7 @@ return array(
 							:joins
 							WHERE :cond
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							LIMIT :size OFFSET :start
+							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 						'
 					),
 					'count' => array(
@@ -263,7 +263,7 @@ return array(
 						:joins
 						WHERE :cond
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						LIMIT :size OFFSET :start
+						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -328,7 +328,7 @@ return array(
 						:joins
 						WHERE :cond
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						LIMIT :size OFFSET :start
+						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -394,7 +394,7 @@ return array(
 					:joins
 					WHERE :cond
 					/*-orderby*/ ORDER BY :order /*orderby-*/
-					LIMIT :size OFFSET :start
+					OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 				'
 			),
 			'count' => array(

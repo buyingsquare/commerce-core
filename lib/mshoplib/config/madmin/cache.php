@@ -50,7 +50,7 @@ return array(
 				'ansi' => '
 					SELECT "id", "value", "expire" FROM "madmin_cache"
 					WHERE :cond
-					LIMIT :size OFFSET :start
+					OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 				',
 			),
 			'count' => array(

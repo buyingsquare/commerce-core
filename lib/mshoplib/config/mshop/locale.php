@@ -41,7 +41,7 @@ return array(
 						FROM "mshop_locale_currency" AS mloccu
 						WHERE :cond
 						ORDER BY :order
-						LIMIT :size OFFSET :start
+						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -99,7 +99,7 @@ return array(
 						FROM "mshop_locale_language" AS mlocla
 						WHERE :cond
 						ORDER BY :order
-						LIMIT :size OFFSET :start
+						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -163,7 +163,7 @@ return array(
 						FROM "mshop_locale_site" AS mlocsi
 						WHERE mlocsi."level" = 0 AND :cond
 						ORDER BY :order
-						LIMIT :size OFFSET :start
+						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -231,7 +231,7 @@ return array(
 						mloc."id", mloc."siteid", mloc."langid", mloc."currencyid",
 						mloc."pos", mloc."status", mloc."mtime", mloc."editor", mloc."ctime"
 					ORDER BY :order
-					LIMIT :size OFFSET :start
+					OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 				'
 			),
 			'count' => array(

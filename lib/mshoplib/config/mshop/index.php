@@ -43,7 +43,7 @@ return array(
 						WHERE :cond
 						GROUP BY mpro."id"
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						LIMIT :size OFFSET :start
+						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -107,7 +107,7 @@ return array(
 						WHERE :cond
 						GROUP BY mpro."id"
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						LIMIT :size OFFSET :start
+						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -169,7 +169,7 @@ return array(
 						WHERE :cond
 						GROUP BY mpro."id"
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						LIMIT :size OFFSET :start
+						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -233,7 +233,7 @@ return array(
 						WHERE :cond
 						GROUP BY mpro."id"
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						LIMIT :size OFFSET :start
+						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -295,7 +295,7 @@ return array(
 						WHERE :cond
 						GROUP BY mpro."id"
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						LIMIT :size OFFSET :start
+						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -335,7 +335,7 @@ return array(
 					WHERE :cond
 					GROUP BY "key", "id"
 					/*-orderby*/ ORDER BY :order /*orderby-*/
-					LIMIT :size OFFSET :start
+					OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 				) AS list
 				GROUP BY "key"
 			'
@@ -348,7 +348,7 @@ return array(
 					WHERE :cond
 					GROUP BY mpro."id"
 					/*-orderby*/ ORDER BY :order /*orderby-*/
-					LIMIT :size OFFSET :start
+					OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
 				'
 			),
 			'count' => array(
