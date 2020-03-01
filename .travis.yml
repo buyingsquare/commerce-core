@@ -11,9 +11,9 @@ env:
 before_script:
   - travis_retry composer update
   - echo "CREATE DATABASE aimeos\nGO" > sqlserver.sql
-  - sudo docker run --name=mssql-server-linux-latest -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=test' -p 1433:1433 -d microsoft/mssql-server-linux:2017-latest
+  - sudo docker run --name=mssql-server-linux-latest -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=S3c0r3P4ss' -p 1433:1433 -d microsoft/mssql-server-linux:2017-latest
   - sudo docker cp sqlserver.sql mssql-server-linux-latest:sqlserver.sql
-  - sudo docker exec -it mssql-server-linux-latest /opt/mssql-tools/bin/sqlcmd -S 127.0.0.1 -U SA -P 'test' -i sqlserver.sql
-  - echo "<?php return array( 'db' => array( 'adapter' => 'sqlserv', 'host' => '127.0.0.1', 'port' => 1433, 'database' => 'aimeos', 'username' => 'SA', 'password' => 'test', 'limit' => 2, 'opt-persistent' => false, 'stmt' => array() ), 'fs' => array( 'adapter' => 'Standard', 'basedir' => '.' ), 'mq' => array( 'adapter' => 'Standard', 'db' => 'db' ) );" > config/resource.php
+  - sudo docker exec -it mssql-server-linux-latest /opt/mssql-tools/bin/sqlcmd -S 127.0.0.1 -U SA -P 'S3c0r3P4ss' -i sqlserver.sql
+  - echo "<?php return array( 'db' => array( 'adapter' => 'sqlserv', 'host' => '127.0.0.1', 'port' => 1433, 'database' => 'aimeos', 'username' => 'SA', 'password' => 'S3c0r3P4ss', 'limit' => 2, 'opt-persistent' => false, 'stmt' => array() ), 'fs' => array( 'adapter' => 'Standard', 'basedir' => '.' ), 'mq' => array( 'adapter' => 'Standard', 'db' => 'db' ) );" > config/resource.php
 
 script: "vendor/bin/phing setup"
