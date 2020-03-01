@@ -95,9 +95,6 @@ return array(
 			$table->addIndex( array( 'langid' ), 'fk_msloc_langid' );
 			$table->addIndex( array( 'currencyid' ), 'fk_msloc_currid' );
 
-			$table->addForeignKeyConstraint( 'mshop_locale_site', array( 'siteid' ), array( 'siteid' ),
-				array( 'onUpdate' => 'CASCADE', 'onDelete' => 'CASCADE' ), 'fk_msloc_siteid' );
-
 			$table->addForeignKeyConstraint( 'mshop_locale_language', array( 'langid' ), array( 'id' ),
 				array( 'onUpdate' => 'CASCADE', 'onDelete' => 'CASCADE' ), 'fk_msloc_langid' );
 
