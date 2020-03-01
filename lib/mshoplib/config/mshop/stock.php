@@ -58,7 +58,7 @@ return array(
 							FROM "mshop_stock_type" mstoty
 							:joins
 							WHERE :cond
-							LIMIT 10000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -122,7 +122,7 @@ return array(
 						FROM "mshop_stock" AS msto
 						:joins
 						WHERE :cond
-						LIMIT 10000 OFFSET 0
+						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				'
 			),

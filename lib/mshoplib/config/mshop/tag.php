@@ -58,7 +58,7 @@ return array(
 							FROM "mshop_tag_type" mtagty
 							:joins
 							WHERE :cond
-							LIMIT 10000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -121,7 +121,7 @@ return array(
 						FROM "mshop_tag" AS mtag
 						:joins
 						WHERE :cond
-						LIMIT 10000 OFFSET 0
+						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				'
 			),

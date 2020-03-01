@@ -74,7 +74,7 @@ return array(
 							FROM "mshop_supplier_address" AS msupad
 							:joins
 							WHERE :cond
-							LIMIT 10000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -144,7 +144,7 @@ return array(
 								FROM "mshop_supplier_list_type" AS msuplity
 								:joins
 								WHERE :cond
-								LIMIT 10000 OFFSET 0
+								OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 							) AS list
 						'
 					),
@@ -225,7 +225,7 @@ return array(
 							FROM "mshop_supplier_list" AS msupli
 							:joins
 							WHERE :cond
-							LIMIT 10000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -286,7 +286,7 @@ return array(
 						FROM "mshop_supplier" AS msup
 						:joins
 						WHERE :cond
-						LIMIT 10000 OFFSET 0
+						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				'
 			),

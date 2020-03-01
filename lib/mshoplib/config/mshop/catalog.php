@@ -59,7 +59,7 @@ return array(
 								FROM "mshop_catalog_list_type" AS mcatlity
 								:joins
 								WHERE :cond
-								LIMIT 10000 OFFSET 0
+								OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 							) AS list
 						'
 					),
@@ -145,7 +145,7 @@ return array(
 							FROM "mshop_catalog_list" AS mcatli
 							:joins
 							WHERE :cond
-							LIMIT 10000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -280,7 +280,7 @@ return array(
 						FROM "mshop_catalog" AS mcat
 						:joins
 						WHERE :cond
-						LIMIT 10000 OFFSET 0
+						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				'
 			),

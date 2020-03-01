@@ -51,7 +51,7 @@ return array(
 							SELECT DISTINCT mloccu."id"
 							FROM "mshop_locale_currency" AS mloccu
 							WHERE :cond
-							LIMIT 10000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -109,7 +109,7 @@ return array(
 							SELECT DISTINCT mlocla."id"
 							FROM "mshop_locale_language" AS mlocla
 							WHERE :cond
-							LIMIT 10000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -173,7 +173,7 @@ return array(
 							SELECT DISTINCT mlocsi."id"
 							FROM "mshop_locale_site" AS mlocsi
 							WHERE :cond
-							LIMIT 10000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -244,7 +244,7 @@ return array(
 						LEFT JOIN "mshop_locale_language" AS mlocla ON (mloc."langid" = mlocla."id")
 						LEFT JOIN "mshop_locale_currency" AS mloccu ON (mloc."currencyid" = mloccu."id")
 						WHERE :cond
-						LIMIT 10000 OFFSET 0
+						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				'
 			),

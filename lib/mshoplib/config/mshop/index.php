@@ -54,7 +54,7 @@ return array(
 							FROM "mshop_product" AS mpro
 							:joins
 							WHERE :cond
-							LIMIT 1000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 1000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -118,7 +118,7 @@ return array(
 							FROM "mshop_product" AS mpro
 							:joins
 							WHERE :cond
-							LIMIT 1000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 1000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -180,7 +180,7 @@ return array(
 							FROM "mshop_product" AS mpro
 							:joins
 							WHERE :cond
-							LIMIT 1000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 1000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -244,7 +244,7 @@ return array(
 							FROM "mshop_product" AS mpro
 							:joins
 							WHERE :cond
-							LIMIT 1000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 1000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -306,7 +306,7 @@ return array(
 							FROM "mshop_product" AS mpro
 							:joins
 							WHERE :cond
-							LIMIT 1000 OFFSET 0
+							OFFSET 0 ROWS FETCH NEXT 1000 ROWS ONLY
 						) AS list
 					'
 				),
@@ -359,7 +359,7 @@ return array(
 						FROM "mshop_product" AS mpro
 						:joins
 						WHERE :cond
-						LIMIT 1000 OFFSET 0
+						OFFSET 0 ROWS FETCH NEXT 1000 ROWS ONLY
 					) AS list
 				'
 			),

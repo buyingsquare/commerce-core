@@ -54,7 +54,7 @@ return array(
 						FROM "madmin_log" AS malog
 						:joins
 						WHERE :cond
-						LIMIT 10000 OFFSET 0
+						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				',
 			),
