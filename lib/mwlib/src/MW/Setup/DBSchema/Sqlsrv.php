@@ -37,7 +37,7 @@ class Sqlsrv extends \Aimeos\MW\Setup\DBSchema\InformationSchema
 		$conn = $this->acquire();
 
 		$stmt = $conn->create( $sql );
-		$stmt->bind( 1, $this->dbname );
+		$stmt->bind( 1, $this->getDBName() );
 		$stmt->bind( 2, $tablename );
 		$result = $stmt->execute()->fetch();
 
@@ -67,7 +67,7 @@ class Sqlsrv extends \Aimeos\MW\Setup\DBSchema\InformationSchema
 		$conn = $this->acquire();
 
 		$stmt = $conn->create( $sql );
-		$stmt->bind( 1, $this->dbname );
+		$stmt->bind( 1, $this->getDBName() );
 		$stmt->bind( 2, $tablename );
 		$stmt->bind( 3, $columnname );
 		$result = $stmt->execute()->fetch();
@@ -98,7 +98,7 @@ class Sqlsrv extends \Aimeos\MW\Setup\DBSchema\InformationSchema
 		$conn = $this->acquire();
 
 		$stmt = $conn->create( $sql );
-		$stmt->bind( 1, $this->dbname );
+		$stmt->bind( 1, $this->getDBName() );
 		$stmt->bind( 2, $tablename );
 		$stmt->bind( 3, $constraintname );
 		$result = $stmt->execute()->fetch();
@@ -141,7 +141,7 @@ class Sqlsrv extends \Aimeos\MW\Setup\DBSchema\InformationSchema
 		$conn = $this->acquire();
 
 		$stmt = $conn->create( $sql );
-		$stmt->bind( 1, $this->dbname );
+		$stmt->bind( 1, $this->getDBName() );
 		$stmt->bind( 2, $tablename );
 		$stmt->bind( 3, $indexname );
 		$result = $stmt->execute()->fetch();
@@ -176,7 +176,7 @@ class Sqlsrv extends \Aimeos\MW\Setup\DBSchema\InformationSchema
 		$conn = $this->acquire();
 
 		$stmt = $conn->create( $sql );
-		$stmt->bind( 1, $this->dbname );
+		$stmt->bind( 1, $this->getDBName() );
 		$stmt->bind( 2, $tablename );
 		$stmt->bind( 3, $columnname );
 		$result = $stmt->execute()->fetch();
