@@ -20,6 +20,96 @@ namespace Aimeos\MW\Setup\DBSchema;
 class Sqlsrv extends \Aimeos\MW\Setup\DBSchema\InformationSchema
 {
 	/**
+	 * Checks if the given table exists in the database.
+	 *
+	 * @param string $tablename Name of the database table
+	 * @return bool True if the table exists, false if not
+	 */
+	public function tableExists( string $tablename ) : bool
+	{
+		$sql = "
+			SELECT name
+			FROM sys.tables
+			WHERE SCHEMA_NAME(schema_id) = ?
+				AND name = ?
+		";
+
+		$conn = $this->acquire();
+
+		$stmt = $conn->create( $sql );
+		$stmt->bind( 1, $this->dbname );
+		$stmt->bind( 2, $tablename );
+		$result = $stmt->execute()->fetch();
+
+		$this->release( $conn );
+
+		return $result ? true : false;
+	}
+
+
+	/**
+	 * Checks if the given column exists for the specified table in the database.
+	 *
+	 * @param string $tablename Name of the database table
+	 * @param string $columnname Name of the table column
+	 * @return bool True if the column exists, false if not
+	 */
+	public function columnExists( string $tablename, string $columnname ) : bool
+	{
+		$sql = "
+			SELECT name
+			FROM sys.columns c
+			WHERE SCHEMA_NAME(schema_id) = ?
+				AND OBJECT_NAME(object_id) = ?
+				AND c.name = ?
+		";
+
+		$conn = $this->acquire();
+
+		$stmt = $conn->create( $sql );
+		$stmt->bind( 1, $this->dbname );
+		$stmt->bind( 2, $tablename );
+		$stmt->bind( 3, $columnname );
+		$result = $stmt->execute()->fetch();
+
+		$this->release( $conn );
+
+		return $result ? true : false;
+	}
+
+
+	/**
+	 * Checks if the given constraint exists for the specified table in the database.
+	 *
+	 * @param string $tablename Name of the database table
+	 * @param string $constraintname Name of the database table constraint
+	 * @return bool True if the constraint exists, false if not
+	 */
+	public function constraintExists( string $tablename, string $constraintname ) : bool
+	{
+		$sql = "
+			SELECT name
+			FROM sys.foreign_keys
+			WHERE SCHEMA_NAME(schema_id) = ?
+				AND OBJECT_NAME(parent_object_id) = ?
+				AND name = ?
+		";
+
+		$conn = $this->acquire();
+
+		$stmt = $conn->create( $sql );
+		$stmt->bind( 1, $this->dbname );
+		$stmt->bind( 2, $tablename );
+		$stmt->bind( 3, $constraintname );
+		$result = $stmt->execute()->fetch();
+
+		$this->release( $conn );
+
+		return $result ? true : false;
+	}
+
+
+	/**
 	 * Checks if the given sequence exists in the database.
 	 *
 	 * @param string $seqname Name of the database sequence
@@ -43,15 +133,17 @@ class Sqlsrv extends \Aimeos\MW\Setup\DBSchema\InformationSchema
 		$sql = "
 			SELECT name
 			FROM sys.indexes
-			WHERE object_id = OBJECT_ID( ? )
+			WHERE SCHEMA_NAME(schema_id) = ?
+				AND OBJECT_NAME(object_id) = ?
 				AND name = ?
 		";
 
 		$conn = $this->acquire();
 
 		$stmt = $conn->create( $sql );
-		$stmt->bind( 1, $tablename );
-		$stmt->bind( 2, $indexname );
+		$stmt->bind( 1, $this->dbname );
+		$stmt->bind( 2, $tablename );
+		$stmt->bind( 3, $indexname );
 		$result = $stmt->execute()->fetch();
 
 		$this->release( $conn );
@@ -61,16 +153,43 @@ class Sqlsrv extends \Aimeos\MW\Setup\DBSchema\InformationSchema
 
 
 	/**
-	 * Creates a new column item using the columns of the information_schema.columns.
+	 * Returns an object containing the details of the column.
 	 *
-	 * @param array $record Associative array with column details
-	 * @return \Aimeos\MW\Setup\DBSchema\Column\Iface Column item
+	 * @param string $tablename Name of the database table
+	 * @param string $columnname Name of the table column
+	 * @return \Aimeos\MW\Setup\DBSchema\Column\Iface Object which contains the details
 	 */
-	protected function createColumnItem( array $record = [] ) : \Aimeos\MW\Setup\DBSchema\Column\Iface
+	public function getColumnDetails( string $tablename, string $columnname ) : \Aimeos\MW\Setup\DBSchema\Column\Iface
 	{
-		$length = ( isset( $record['CHARACTER_MAXIMUM_LENGTH'] ) ? $record['CHARACTER_MAXIMUM_LENGTH'] : $record['NUMERIC_PRECISION'] );
+		$sql = "
+			SELECT t.name AS table_name, c.name AS col_name, p.name AS type_name,
+				OBJECT_DEFINITION(c.default_object_id) AS col_default,
+				c.max_length, c.precision
+			FROM sys.columns c
+			JOIN sys.tables t ON c.object_id = t.object_id
+			JOIN sys.types p ON p.user_type_id = c.user_type_id
+			WHERE SCHEMA_NAME(schema_id) = ?
+				AND t.name = ?
+				AND c.name = ?
+		";
 
-		return new \Aimeos\MW\Setup\DBSchema\Column\Item( $record['TABLE_NAME'], $record['COLUMN_NAME'], $record['DATA_TYPE'],
-			$length, $record['COLUMN_DEFAULT'], $record['IS_NULLABLE'], $record['CHARACTER_SET_NAME'], $record['COLLATION_NAME'] );
+		$conn = $this->acquire();
+
+		$stmt = $conn->create( $sql );
+		$stmt->bind( 1, $this->dbname );
+		$stmt->bind( 2, $tablename );
+		$stmt->bind( 3, $columnname );
+		$result = $stmt->execute()->fetch();
+
+		$this->release( $conn );
+
+		if( $result === null ) {
+			throw new \Aimeos\MW\Setup\Exception( sprintf( 'Unknown column "%1$s" in table "%2$s"', $columnname, $tablename ) );
+		}
+
+		$length = ( isset( $record['precision'] ) ? $record['precision'] : $record['max_length'] );
+
+		return new \Aimeos\MW\Setup\DBSchema\Column\Item( $record['table_name'], $record['col_name'], $record['type_name'],
+			$length, $record['col_default'], $record['is_nullable'], null, $record['collation_name'] );
 	}
 }
