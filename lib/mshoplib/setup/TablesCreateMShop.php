@@ -169,7 +169,8 @@ class TablesCreateMShop extends \Aimeos\MW\Setup\Task\Base
 				$tableSchema = new \Doctrine\DBAL\Schema\Schema( $tables, [], $config );
 				$schemaDiff = \Doctrine\DBAL\Schema\Comparator::compareSchemas( $tableSchema, $dbalschema );
 				$stmts = $this->remove( $this->exclude( $schemaDiff, $relpath ), $clean )->toSaveSql( $platform );
-echo PHP_EOL . $stmts . PHP_EOL;
+print_r( $stmts );
+
 				$this->executeList( $stmts, $rname );
 				$this->status( !empty( $stmts ) ? 'done' : 'OK' );
 			}
