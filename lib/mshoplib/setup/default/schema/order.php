@@ -252,7 +252,7 @@ return array(
 				array( 'onUpdate' => 'CASCADE', 'onDelete' => 'CASCADE' ), 'fk_msordbaco_baseid' );
 
 			$table->addForeignKeyConstraint( 'mshop_order_base_product', array( 'ordprodid' ), array( 'id' ),
-				array( 'onUpdate' => 'CASCADE', 'onDelete' => 'NO ACTION' ), 'fk_msordbaco_ordprodid' );
+				array( 'onUpdate' => 'NO ACTION', 'onDelete' => 'NO ACTION' ), 'fk_msordbaco_ordprodid' );
 
 			return $schema;
 		},
