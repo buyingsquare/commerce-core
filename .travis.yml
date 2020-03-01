@@ -9,6 +9,8 @@ env:
   - DB=mssql
 
 before_script:
+  - pecl install sqlsrv
+  - pecl install pdo_sqlsrv
   - travis_retry composer update
   - echo "CREATE DATABASE aimeos\nGO" > sqlserver.sql
   - sudo docker run --name=mssql-server-linux-latest -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=S3c0r3P4ss' -p 1433:1433 -d microsoft/mssql-server-linux:2017-latest
