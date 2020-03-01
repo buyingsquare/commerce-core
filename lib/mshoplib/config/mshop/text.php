@@ -48,7 +48,7 @@ return array(
 							:joins
 							WHERE :cond
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
 					'count' => array(
@@ -85,7 +85,7 @@ return array(
 							WHERE :cond
 							GROUP BY :key, mtexli."id" /*-columns*/ , :columns /*columns-*/
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list
 						GROUP BY "key"
 					'
@@ -129,7 +129,7 @@ return array(
 						:joins
 						WHERE :cond
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -194,7 +194,7 @@ return array(
 						:joins
 						WHERE :cond
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -259,7 +259,7 @@ return array(
 					:joins
 					WHERE :cond
 					/*-orderby*/ ORDER BY :order /*orderby-*/
-					OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				'
 			),
 			'count' => array(

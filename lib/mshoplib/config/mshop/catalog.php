@@ -48,7 +48,7 @@ return array(
 							:joins
 							WHERE :cond
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
 					'count' => array(
@@ -85,7 +85,7 @@ return array(
 							WHERE :cond
 							GROUP BY :key, mcatli."id"
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list
 						GROUP BY "key"
 					'
@@ -134,7 +134,7 @@ return array(
 							mcatli."config", mcatli."pos", mcatli."status", mcatli."mtime",
 							mcatli."editor", mcatli."ctime"
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -269,7 +269,7 @@ return array(
 					:joins
 					WHERE :cond
 					/*-orderby*/ ORDER BY :order /*orderby-*/
-					OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				'
 			),
 			'count' => array(

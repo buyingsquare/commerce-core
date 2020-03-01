@@ -48,7 +48,7 @@ return array(
 							:joins
 							WHERE :cond
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
 					'count' => array(
@@ -85,7 +85,7 @@ return array(
 							WHERE :cond
 							GROUP BY :key, mserli."id" /*-columns*/ , :columns /*columns-*/
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list
 						GROUP BY "key"
 					'
@@ -133,7 +133,7 @@ return array(
 							mserli."refid", mserli."start", mserli."end", mserli."config", mserli."pos",
 							mserli."status", mserli."mtime", mserli."editor", mserli."ctime"
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -198,7 +198,7 @@ return array(
 						:joins
 						WHERE :cond
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -264,7 +264,7 @@ return array(
 					:joins
 					WHERE :cond
 					/*-orderby*/ ORDER BY :order /*orderby-*/
-					OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				'
 			),
 			'count' => array(

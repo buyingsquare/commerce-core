@@ -47,7 +47,7 @@ return array(
 					:joins
 					WHERE :cond
 					/*-orderby*/ ORDER BY :order /*orderby-*/
-					OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				',
 			),
 			'count' => array(

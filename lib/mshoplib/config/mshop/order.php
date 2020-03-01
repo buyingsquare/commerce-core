@@ -20,7 +20,7 @@ return array(
 								:joins
 								WHERE :cond
 								/*-orderby*/ ORDER BY :order /*orderby-*/
-								OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+								OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 							) AS list
 							GROUP BY "key"
 						'
@@ -86,7 +86,7 @@ return array(
 								mordbaad."telefax", mordbaad."website", mordbaad."longitude", mordbaad."latitude", mordbaad."pos",
 								mordbaad."mtime", mordbaad."editor", mordbaad."ctime"
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
 					'count' => array(
@@ -119,7 +119,7 @@ return array(
 								:joins
 								WHERE :cond
 								/*-orderby*/ ORDER BY :order /*orderby-*/
-								OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+								OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 							) AS list
 							GROUP BY "key"
 						'
@@ -161,7 +161,7 @@ return array(
 								mordbaco."id", mordbaco."baseid", mordbaco."siteid", mordbaco."ordprodid",
 								mordbaco."code", mordbaco."mtime", mordbaco."editor", mordbaco."ctime"
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
 					'count' => array(
@@ -195,7 +195,7 @@ return array(
 									:joins
 									WHERE :cond
 									/*-orderby*/ ORDER BY :order /*orderby-*/
-									OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+									OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 								) AS list
 								GROUP BY "key"
 							'
@@ -242,7 +242,7 @@ return array(
 									mordbaprat."code", mordbaprat."quantity", mordbaprat."value", mordbaprat."name", mordbaprat."mtime",
 									mordbaprat."editor", mordbaprat."ctime"
 								/*-orderby*/ ORDER BY :order /*orderby-*/
-								OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+								OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 							'
 						),
 						'count' => array(
@@ -274,7 +274,7 @@ return array(
 								:joins
 								WHERE :cond
 								/*-orderby*/ ORDER BY :order /*orderby-*/
-								OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+								OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 							) AS list
 							GROUP BY "key"
 						'
@@ -288,7 +288,7 @@ return array(
 								:joins
 								WHERE :cond
 								/*-orderby*/ ORDER BY :order /*orderby-*/
-								OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+								OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 							) AS list
 							GROUP BY "key"
 						'
@@ -302,7 +302,7 @@ return array(
 								:joins
 								WHERE :cond
 								/*-orderby*/ ORDER BY :order /*orderby-*/
-								OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+								OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 							) AS list
 							GROUP BY "key"
 						'
@@ -367,7 +367,7 @@ return array(
 								mordbapr."status", mordbapr."pos", mordbapr."mtime", mordbapr."editor", mordbapr."target", mordbapr."ctime",
 								mordbapr."ordaddrid", mordbapr."description"
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
 					'count' => array(
@@ -401,7 +401,7 @@ return array(
 									:joins
 									WHERE :cond
 									/*-orderby*/ ORDER BY :order /*orderby-*/
-									OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+									OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 								) AS list
 								GROUP BY "key"
 							'
@@ -448,7 +448,7 @@ return array(
 									mordbaseat."code", mordbaseat."value", mordbaseat."quantity", mordbaseat."name", mordbaseat."mtime",
 									mordbaseat."ctime", mordbaseat."editor"
 								/*-orderby*/ ORDER BY :order /*orderby-*/
-								OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+								OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 							'
 						),
 						'count' => array(
@@ -480,7 +480,7 @@ return array(
 								:joins
 								WHERE :cond
 								/*-orderby*/ ORDER BY :order /*orderby-*/
-								OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+								OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 							) AS list
 							GROUP BY "key"
 						'
@@ -494,7 +494,7 @@ return array(
 								:joins
 								WHERE :cond
 								/*-orderby*/ ORDER BY :order /*orderby-*/
-								OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+								OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 							) AS list
 							GROUP BY "key"
 						'
@@ -508,7 +508,7 @@ return array(
 								:joins
 								WHERE :cond
 								/*-orderby*/ ORDER BY :order /*orderby-*/
-								OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+								OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 							) AS list
 							GROUP BY "key"
 						'
@@ -564,7 +564,7 @@ return array(
 								mordbase."tax", mordbase."taxrate", mordbase."taxflag", mordbase."pos",
 								mordbase."mtime", mordbase."editor", mordbase."ctime"
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
 					'count' => array(
@@ -596,7 +596,7 @@ return array(
 							:joins
 							WHERE :cond
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list
 						GROUP BY "key"
 					'
@@ -610,7 +610,7 @@ return array(
 							:joins
 							WHERE :cond
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list
 						GROUP BY "key"
 					'
@@ -624,7 +624,7 @@ return array(
 							:joins
 							WHERE :cond
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list
 						GROUP BY "key"
 					'
@@ -676,7 +676,7 @@ return array(
 							mordba."taxflag", mordba."comment", mordba."customerref", mordba."mtime", mordba."editor",
 							mordba."ctime"
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -709,7 +709,7 @@ return array(
 							:joins
 							WHERE :cond
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list
 						GROUP BY "key"
 					'
@@ -751,7 +751,7 @@ return array(
 							mordst."id", mordst."siteid", mordst."parentid", mordst."type",
 							mordst."value", mordst."mtime", mordst."ctime", mordst."editor"
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -783,7 +783,7 @@ return array(
 						:joins
 						WHERE :cond
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					) AS list
 					GROUP BY "key"
 				'
@@ -797,7 +797,7 @@ return array(
 						:joins
 						WHERE :cond
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					) AS list
 					GROUP BY "key"
 				'
@@ -811,7 +811,7 @@ return array(
 						:joins
 						WHERE :cond
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					) AS list
 					GROUP BY "key"
 				'
@@ -859,7 +859,7 @@ return array(
 						mord."datedelivery", mord."statuspayment", mord."statusdelivery", mord."relatedid",
 						mord."ctime", mord."mtime", mord."editor"
 					/*-orderby*/ ORDER BY :order /*orderby-*/
-					OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				'
 			),
 			'count' => array(

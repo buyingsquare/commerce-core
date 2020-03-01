@@ -63,7 +63,7 @@ return array(
 						:joins
 						WHERE :cond
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -125,7 +125,7 @@ return array(
 						:joins
 						WHERE :cond
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -191,7 +191,7 @@ return array(
 							:joins
 							WHERE :cond
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
 					'count' => array(
@@ -228,7 +228,7 @@ return array(
 							WHERE :cond
 							GROUP BY :key, mcusli."id"
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list
 						GROUP BY "key"
 					'
@@ -277,7 +277,7 @@ return array(
 							mcusli."config", mcusli."pos", mcusli."status", mcusli."mtime",
 							mcusli."editor", mcusli."ctime"
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -343,7 +343,7 @@ return array(
 							:joins
 							WHERE :cond
 							/*-orderby*/ ORDER BY :order /*orderby-*/
-							OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
 					'count' => array(
@@ -407,7 +407,7 @@ return array(
 						:joins
 						WHERE :cond
 						/*-orderby*/ ORDER BY :order /*orderby-*/
-						OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
 				'count' => array(
@@ -490,7 +490,7 @@ return array(
 					:joins
 					WHERE :cond
 					/*-orderby*/ ORDER BY :order /*orderby-*/
-					OFFSET :start ROWS RETCH NEXT :size ROWS ONLY
+					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				'
 			),
 			'count' => array(
