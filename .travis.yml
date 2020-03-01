@@ -12,11 +12,11 @@ before_script:
   - curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
   - curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee -a /etc/apt/sources.list
   - sudo apt-get update
-  - sudo ACCEPT_EULA=Y apt-get install msodbcsql17 unixodbc-dev
+  - sudo apt-get -y install msodbcsql17 unixodbc-dev
   - pecl install sqlsrv
   - pecl install pdo_sqlsrv
   - travis_retry composer update
-  - echo "CREATE DATABASE aimeos\nGO" > sqlserver.sql
+  - echo "CREATE DATABASE aimeos;" > sqlserver.sql
   - sudo docker run --name=mssql-server-linux-latest -e 'ACCEPT_EULA=Y' -e 'MSSQL_SA_PASSWORD=S3c0r3P4ss' -p 1433:1433 -d microsoft/mssql-server-linux:2017-latest
   - sudo docker cp sqlserver.sql mssql-server-linux-latest:sqlserver.sql
   - sudo docker exec -it mssql-server-linux-latest /opt/mssql-tools/bin/sqlcmd -S 127.0.0.1 -U SA -P 'S3c0r3P4ss' -i sqlserver.sql
