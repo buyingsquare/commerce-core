@@ -9,7 +9,7 @@ env:
   - DB=mssql
 
 before_script:
-  - sudo apt-get install unixodbc-dev
+  - sudo apt-get install unixodbc unixodbc-dev
   - pecl install sqlsrv
   - pecl install pdo_sqlsrv
   - travis_retry composer update
