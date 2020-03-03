@@ -118,13 +118,8 @@ return array(
 					FROM "mshop_plugin" mplu
 					:joins
 					WHERE :cond
-<<<<<<< HEAD
-					/*-orderby*/ ORDER BY :order /*orderby-*/
-					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
-=======
 					ORDER BY :order
-					LIMIT :size OFFSET :start
->>>>>>> c65084431... Always sort result and use simple replacements in SQL statements only
+					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				'
 			),
 			'count' => array(

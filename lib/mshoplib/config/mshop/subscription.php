@@ -65,13 +65,8 @@ return array(
 						mord."id", mord."baseid", mord."ordprodid", mord."siteid", mord."next", mord."end",
 						mord."interval", mord."reason", mord."productid", mord."period", mord."status",
 						mord."ctime", mord."mtime", mord."editor"
-<<<<<<< HEAD
-					/*-orderby*/ ORDER BY :order /*orderby-*/
-					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
-=======
 					ORDER BY :order
-					LIMIT :size OFFSET :start
->>>>>>> c65084431... Always sort result and use simple replacements in SQL statements only
+					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				'
 			),
 			'count' => array(
