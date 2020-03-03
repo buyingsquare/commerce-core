@@ -197,7 +197,7 @@ class DBALTest extends \PHPUnit\Framework\TestCase
 
 	public function testStmtSimpleBindApostrophes()
 	{
-		$sqlinsert = 'INSERT INTO "mw_unit_test" ("id", "name") VALUES (1, \'' . $this->conn->escape( '\'\'' ) . '\')';
+		$sqlinsert = 'INSERT INTO "mw_unit_test" ("name") VALUES (\'' . $this->conn->escape( '\'\'' ) . '\')';
 
 		$result = $this->conn->create( $sqlinsert )->execute()->finish();
 
