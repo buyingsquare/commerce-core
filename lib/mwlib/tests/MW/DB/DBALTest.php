@@ -257,12 +257,11 @@ class DBALTest extends \PHPUnit\Framework\TestCase
 
 	public function testResultFetch()
 	{
-		$sqlinsert = 'INSERT INTO "mw_unit_test" ("id", "name") VALUES (?, ?)';
+		$sqlinsert = 'INSERT INTO "mw_unit_test" ("name") VALUES (?)';
 		$sqlselect = 'SELECT * FROM "mw_unit_test"';
 
 		$stmt = $this->conn->create( $sqlinsert );
-		$stmt->bind( 1, 1 );
-		$stmt->bind( 2, 'test' );
+		$stmt->bind( 1, 'test' );
 		$stmt->execute()->finish();
 
 		$stmt = $this->conn->create( $sqlselect );
@@ -277,11 +276,10 @@ class DBALTest extends \PHPUnit\Framework\TestCase
 	public function testWrongFieldType()
 	{
 		$this->expectException( \Aimeos\MW\DB\Exception::class );
-		$sqlinsert = 'INSERT INTO "mw_unit_test" ("id", "name") VALUES (?, ?)';
+		$sqlinsert = 'INSERT INTO "mw_unit_test" ("name") VALUES (?)';
 
 		$stmt = $this->conn->create( $sqlinsert );
-		$stmt->bind( 1, 1 );
-		$stmt->bind( 2, 'test', 123 );
+		$stmt->bind( 1, 'test', 123 );
 
 		$this->expectException( \Aimeos\MW\DB\Exception::class );
 		$stmt->execute();
