@@ -808,16 +808,17 @@ abstract class Base extends \Aimeos\MW\Common\Manager\Base
 			$search->getSliceSize(),
 		);
 
-		if( count( $search->getSortations() ) > 0 )
-		{
-			$keys[] = 'orderby';
-			$find[] = ':order';
-			$replace[] = $search->getSortationSource( $types, $translations, $funcs );
-
-			$keys[] = 'group';
-			$find[] = ':group';
-			$replace[] = implode( ', ', $search->translate( $search->getSortations(), $translations ) ) . ', ';
+		if( empty( $search->getSortations() ) ) {
+			$search = (clone $search)->setSortations( [$search->sort( '+', key( $attributes ) )] );
 		}
+
+		$keys[] = 'orderby';
+		$find[] = ':order';
+		$replace[] = $search->getSortationSource( $types, $translations, $funcs );
+
+		$keys[] = 'group';
+		$find[] = ':group';
+		$replace[] = implode( ', ', $search->translate( $search->getSortations(), $translations ) ) . ', ';
 
 		return [$keys, $find, $replace];
 	}
