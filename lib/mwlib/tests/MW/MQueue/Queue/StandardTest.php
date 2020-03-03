@@ -74,7 +74,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 		{
 			$config['sql']['reserve'] = 'UPDATE mw_mqueue_test SET cname = ?, rtime = ? WHERE id IN (
 				SELECT * FROM (
-					SELECT id FROM mw_mqueue_test WHERE queue = ? AND rtime < ? FETCH NEXT 1 ROWS ONLY
+					SELECT id FROM mw_mqueue_test WHERE queue = ? AND rtime < ? ORDER BY rtime FETCH NEXT 1 ROWS ONLY
 				) AS t
 			)';
 		}
