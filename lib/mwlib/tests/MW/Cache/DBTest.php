@@ -354,6 +354,8 @@ class DBTest extends \PHPUnit\Framework\TestCase
 		$result = $conn->create( 'SELECT * FROM "mw_cache_test" WHERE "id" = \'t:3\'' )->execute();
 		self::$dbm->release( $conn );
 
+		$row = $result->fetch();
+
 		$this->assertEquals( 't:3', $row['id'] );
 		$this->assertEquals( 'test 3', $row['value'] );
 		$this->assertEquals( '2100-01-01 00:00:00', substr( $row['expire'], 0, 19 ) );
