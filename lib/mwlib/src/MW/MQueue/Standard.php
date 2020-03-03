@@ -80,23 +80,23 @@ class Standard extends Base implements Iface
 		$sock = $this->getConfig( 'db/socket' );
 		$dbase = $this->getConfig( 'db/database', 'aimeos' );
 
-		$dsn = $adapter;
+		$dsn = $adapter . ':';
 
 		if( $adapter === 'sqlsrv' )
 		{
-			$dsn .= isset( $host ) ? ';Server=' . $host : '';
+			$dsn .= isset( $host ) ? 'Server=' . $host : '';
 			$dsn .= isset( $port ) ? ',' . $port : '';
-			$dsn .= ';Database=' . $dbase;
+			$dsn .= ( isset( $host ) ? ';' : '' ) . 'Database=' . $dbase;
 		}
 		elseif( $sock == null )
 		{
 			$dsn .= isset( $host ) ? ';host=' . $host : '';
 			$dsn .= isset( $port ) ? ';port=' . $port : '';
-			$dsn .= ';dbname=' . $dbase;
+			$dsn .= ( isset( $host ) ? ';' : '' ) . 'dbname=' . $dbase;
 		}
 		else
 		{
-			$dsn .= ';unix_socket=' . $sock . ';dbname=' . $dbase;
+			$dsn .= 'unix_socket=' . $sock . ';dbname=' . $dbase;
 		}
 
 		$params = array( $dsn, $user, $pass, [] );
