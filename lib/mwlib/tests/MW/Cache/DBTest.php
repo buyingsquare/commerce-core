@@ -320,7 +320,7 @@ class DBTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals( 't:3', $row['id'] );
 		$this->assertEquals( 'test 3', $row['value'] );
-		$this->assertEquals( '2100-01-01 00:00:00', substr( $row['expire'], 0, 19 );
+		$this->assertEquals( '2100-01-01 00:00:00', substr( $row['expire'], 0, 19 ) );
 		$this->assertNull( $result->fetch() );
 	}
 
@@ -356,7 +356,7 @@ class DBTest extends \PHPUnit\Framework\TestCase
 
 		$this->assertEquals( 't:3', $row['id'] );
 		$this->assertEquals( 'test 3', $row['value'] );
-		$this->assertEquals( '2100-01-01 00:00:00', substr( $row['expire'], 0, 19 );
+		$this->assertEquals( '2100-01-01 00:00:00', substr( $row['expire'], 0, 19 ) );
 		$this->assertNull( $result->fetch() );
 
 
