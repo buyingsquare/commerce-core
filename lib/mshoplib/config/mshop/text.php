@@ -47,7 +47,7 @@ return array(
 							FROM "mshop_text_list_type" AS mtexlity
 							:joins
 							WHERE :cond
-							/*-orderby*/ ORDER BY :order /*orderby-*/
+							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
@@ -83,8 +83,8 @@ return array(
 							FROM "mshop_text_list" AS mtexli
 							:joins
 							WHERE :cond
-							GROUP BY :key, mtexli."id" /*-columns*/ , :columns /*columns-*/
-							/*-orderby*/ ORDER BY :order /*orderby-*/
+							GROUP BY :columns :key, mtexli."id"
+							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list
 						GROUP BY "key"
@@ -128,7 +128,7 @@ return array(
 						FROM "mshop_text_list" AS mtexli
 						:joins
 						WHERE :cond
-						/*-orderby*/ ORDER BY :order /*orderby-*/
+						ORDER BY :order
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
@@ -193,7 +193,7 @@ return array(
 						FROM "mshop_text_type" mtexty
 						:joins
 						WHERE :cond
-						/*-orderby*/ ORDER BY :order /*orderby-*/
+						ORDER BY :order
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
@@ -258,7 +258,7 @@ return array(
 					FROM "mshop_text" AS mtex
 					:joins
 					WHERE :cond
-					/*-orderby*/ ORDER BY :order /*orderby-*/
+					ORDER BY :order
 					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				'
 			),

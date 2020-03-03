@@ -47,7 +47,7 @@ return array(
 							FROM "mshop_price_list_type" AS mprility
 							:joins
 							WHERE :cond
-							/*-orderby*/ ORDER BY :order /*orderby-*/
+							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
@@ -83,8 +83,8 @@ return array(
 							FROM "mshop_price_list" AS mprili
 							:joins
 							WHERE :cond
-							GROUP BY :key, mprili."id" /*-columns*/ , :columns /*columns-*/
-							/*-orderby*/ ORDER BY :order /*orderby-*/
+							GROUP BY :columns :key, mprili."id"
+							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list
 						GROUP BY "key"
@@ -132,8 +132,8 @@ return array(
 							mprili."id", mprili."parentid", mprili."siteid", mprili."type",
 							mprili."domain", mprili."refid", mprili."start", mprili."end",
 							mprili."config", mprili."pos", mprili."status", mprili."mtime",
-							mprili."editor", mprili."ctime" /*-columns*/ , :columns /*columns-*/
-						/*-orderby*/ ORDER BY :order /*orderby-*/
+							mprili."editor", mprili."ctime"
+						ORDER BY :order
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
@@ -199,7 +199,7 @@ return array(
 							FROM "mshop_price_property_type" mpriprty
 							:joins
 							WHERE :cond
-							/*-orderby*/ ORDER BY :order /*orderby-*/
+							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
@@ -263,7 +263,7 @@ return array(
 						FROM "mshop_price_property" AS mpripr
 						:joins
 						WHERE :cond
-						/*-orderby*/ ORDER BY :order /*orderby-*/
+						ORDER BY :order
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
@@ -328,7 +328,7 @@ return array(
 						FROM "mshop_price_type" AS mprity
 						:joins
 						WHERE :cond
-						/*-orderby*/ ORDER BY :order /*orderby-*/
+						ORDER BY :order
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
@@ -397,7 +397,7 @@ return array(
 					FROM "mshop_price" AS mpri
 					:joins
 					WHERE :cond
-					/*-orderby*/ ORDER BY :order /*orderby-*/
+					ORDER BY :order
 					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				'
 			),

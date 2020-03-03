@@ -47,7 +47,7 @@ return array(
 							FROM "mshop_product_list_type" AS mprolity
 							:joins
 							WHERE :cond
-							/*-orderby*/ ORDER BY :order /*orderby-*/
+							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
@@ -83,7 +83,7 @@ return array(
 							FROM "mshop_product_list" AS mproli
 							:joins
 							WHERE :cond
-							/*-orderby*/ ORDER BY :order /*orderby-*/
+							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list
 						GROUP BY "key"
@@ -132,7 +132,7 @@ return array(
 							mproli."domain", mproli."refid", mproli."start", mproli."end",
 							mproli."config", mproli."pos", mproli."status", mproli."mtime",
 							mproli."editor", mproli."ctime"
-						 /*-orderby*/ ORDER BY :order /*orderby-*/
+						ORDER BY :order
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
@@ -198,7 +198,7 @@ return array(
 							FROM "mshop_product_property_type" mproprty
 							:joins
 							WHERE :cond
-							/*-orderby*/ ORDER BY :order /*orderby-*/
+							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						'
 					),
@@ -262,7 +262,7 @@ return array(
 						FROM "mshop_product_property" AS mpropr
 						:joins
 						WHERE :cond
-						/*-orderby*/ ORDER BY :order /*orderby-*/
+						ORDER BY :order
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
@@ -327,7 +327,7 @@ return array(
 						FROM "mshop_product_type" AS mproty
 						:joins
 						WHERE :cond
-						/*-orderby*/ ORDER BY :order /*orderby-*/
+						ORDER BY :order
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					'
 				),
@@ -394,7 +394,7 @@ return array(
 					FROM "mshop_product" AS mpro
 					:joins
 					WHERE :cond
-					/*-orderby*/ ORDER BY :order /*orderby-*/
+					ORDER BY :order
 					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				'
 			),
