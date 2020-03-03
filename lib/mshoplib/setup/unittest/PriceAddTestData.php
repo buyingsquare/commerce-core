@@ -106,5 +106,9 @@ class PriceAddTestData extends \Aimeos\MW\Setup\Task\Base
 		}
 
 		$priceManager->commit();
+
+foreach( $priceManager->searchItems( $priceManager->createSearch() ) as $price ) {
+	print_r( $price->toArray() );
+}
 	}
 }
