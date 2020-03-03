@@ -369,6 +369,7 @@ return array(
 					'ANALYZE TABLE "mshop_product_list"',
 				),
 				'pgsql' => [],
+				'sqlsrv' => [],
 			),
 			'domains' => [
 				'attribute' => 'attribute',
