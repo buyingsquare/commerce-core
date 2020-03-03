@@ -57,11 +57,28 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'db' => \TestHelperMw::getConfig()->get( 'resource/db' ),
 			'sql' => array(
 				'insert' => 'INSERT INTO mw_mqueue_test (queue, cname, rtime, message) VALUES (?, ?, ?, ?)',
-				'reserve' => 'UPDATE mw_mqueue_test SET cname = ?, rtime = ? WHERE id IN ( SELECT * FROM ( SELECT id FROM mw_mqueue_test WHERE queue = ? AND rtime < ? LIMIT 1 ) AS t )',
 				'get' => 'SELECT * FROM mw_mqueue_test WHERE queue = ? AND cname = ? AND rtime = ? LIMIT 1',
 				'delete' => 'DELETE FROM mw_mqueue_test WHERE id = ? AND queue = ?',
 			),
 		);
+
+		if( \TestHelperMw::getConfig()->get( 'resource/db/adapter' ) === 'mysql' )
+		{
+			$config['sql']['reserve'] = 'UPDATE mw_mqueue_test SET cname = ?, rtime = ? WHERE id IN (
+				SELECT * FROM (
+					SELECT id FROM mw_mqueue_test WHERE queue = ? AND rtime < ? LIMIT 1
+				) AS t
+			)';
+		}
+		else
+		{
+			$config['sql']['reserve'] = 'UPDATE mw_mqueue_test SET cname = ?, rtime = ? WHERE id IN (
+				SELECT * FROM (
+					SELECT id FROM mw_mqueue_test WHERE queue = ? AND rtime < ? FETCH NEXT 1 ROWS ONLY
+				) AS t
+			)';
+		}
+
 		$mqueue = new \Aimeos\MW\MQueue\Standard( $config );
 		$this->object = $mqueue->getQueue( 'email' );
 	}
