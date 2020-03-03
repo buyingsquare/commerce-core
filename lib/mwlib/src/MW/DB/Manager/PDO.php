@@ -152,16 +152,23 @@ class PDO implements \Aimeos\MW\DB\Manager\Iface
 		$sock = $this->config->get( 'resource/' . $name . '/socket' );
 		$dbase = $this->config->get( 'resource/' . $name . '/database' );
 
-		$dsn = ( $adapter === 'sqlsrv' ? 'mssql' : $adapter ) . ':dbname=' . $dbase;
+		$dsn = $adapter;
 
-		if( $sock == null )
+		if( $adapter === 'sqlsrv' )
+		{
+			$dsn .= isset( $host ) ? ';Server=' . $host : '';
+			$dsn .= isset( $port ) ? ',' . $port : '';
+			$dsn .= ';Database=' . $dbase;
+		}
+		elseif( $sock == null )
 		{
 			$dsn .= isset( $host ) ? ';host=' . $host : '';
 			$dsn .= isset( $port ) ? ';port=' . $port : '';
+			$dsn .= ';dbname=' . $dbase;
 		}
 		else
 		{
-			$dsn .= ';unix_socket=' . $sock;
+			$dsn .= ';unix_socket=' . $sock . ';dbname=' . $dbase;
 		}
 
 		$params = array( $dsn, $user, $pass, [] );
