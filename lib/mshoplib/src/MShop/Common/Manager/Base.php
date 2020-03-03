@@ -807,21 +807,6 @@ abstract class Base extends \Aimeos\MW\Common\Manager\Base
 			$search->getSliceSize(),
 		);
 
-<<<<<<< HEAD
-		if( empty( $search->getSortations() ) ) {
-			$search = (clone $search)->setSortations( [$search->sort( '+', key( $attributes ) )] );
-		}
-
-		$keys[] = 'orderby';
-		$find[] = ':order';
-		$replace[] = $search->getSortationSource( $types, $translations, $funcs );
-
-		$keys[] = 'group';
-		$find[] = ':group';
-		$replace[] = implode( ', ', $search->translate( $search->getSortations(), $translations ) ) . ', ';
-
-		return [$keys, $find, $replace];
-=======
 		if( empty( $search->getSortations() ) && ( $attribute = reset( $attributes ) ) !== false ) {
 			$search = (clone $search)->setSortations( [$search->sort( '+', $attribute->getCode() )] );
 		}
@@ -833,7 +818,6 @@ abstract class Base extends \Aimeos\MW\Common\Manager\Base
 		$replace[] = implode( ', ', $search->translate( $search->getSortations(), $translations ) ) . ', ';
 
 		return [$find, $replace];
->>>>>>> c65084431... Always sort result and use simple replacements in SQL statements only
 	}
 
 
