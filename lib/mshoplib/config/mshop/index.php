@@ -343,7 +343,7 @@ return array(
 						FROM "mshop_product" AS mpro
 						:joins
 						WHERE :cond
-						GROUP BY mpro."id", "keycol"
+						GROUP BY "keycol", mpro."id"
 						ORDER BY :order
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					) AS list
