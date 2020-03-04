@@ -51,19 +51,32 @@ class Standard extends Base implements Iface
 		if( !isset( $this->queues[$name] ) )
 		{
 			$sql = array(
-				'insert' => $this->getConfig( 'sql/insert', 'INSERT INTO madmin_queue (queue, cname, rtime, message) VALUES (?, ?, ?, ?)' ),
-				'reserve' => $this->getConfig( 'sql/reserve', 'UPDATE madmin_queue SET cname = ?, rtime = ? WHERE id IN ( SELECT * FROM ( SELECT id FROM madmin_queue WHERE queue = ? AND rtime < ? ORDER BY rtime FETCH NEXT 1 ROWS ONLY ) AS t )' ),
-				'get' => $this->getConfig( 'sql/get', 'SELECT * FROM madmin_queue WHERE queue = ? AND cname = ? AND rtime = ? LIMIT 1' ),
-				'delete' => $this->getConfig( 'sql/delete', 'DELETE FROM madmin_queue WHERE id = ? AND queue = ?' ),
+				'insert' => $this->getConfig( 'sql/insert', '
+					INSERT INTO madmin_queue (queue, cname, rtime, message) VALUES (?, ?, ?, ?)
+				' ),
+				'reserve' => $this->getConfig( 'sql/reserve', '
+					UPDATE madmin_queue SET cname = ?, rtime = ? WHERE id IN (
+						SELECT * FROM (
+							SELECT id FROM madmin_queue WHERE queue = ? AND rtime < ?
+							ORDER BY rtime OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY
+						) AS t
+					)
+				' ),
+				'get' => $this->getConfig( 'sql/get', '
+					SELECT * FROM madmin_queue WHERE queue = ? AND cname = ? AND rtime = ? LIMIT 1
+				' ),
+				'delete' => $this->getConfig( 'sql/delete', '
+					DELETE FROM madmin_queue WHERE id = ? AND queue = ?
+				' ),
 			);
 
 			if( $this->getConfig( 'db/adapter' ) === 'mysql' )
 			{
-				$sql['reserve'] = 'UPDATE mw_mqueue_test SET cname = ?, rtime = ? WHERE id IN (
-					SELECT * FROM (
+				$sql['reserve'] = '
+					UPDATE mw_mqueue_test SET cname = ?, rtime = ? WHERE id IN (
 						SELECT id FROM mw_mqueue_test WHERE queue = ? AND rtime < ? LIMIT 1
-					) AS t
-				)';
+					)
+				';
 			}
 
 			$rtime = $this->getConfig( 'releasetime', 60 );
