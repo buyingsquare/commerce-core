@@ -63,7 +63,8 @@ class Standard extends Base implements Iface
 					)
 				' ),
 				'get' => $this->getConfig( 'sql/get', '
-					SELECT * FROM madmin_queue WHERE queue = ? AND cname = ? AND rtime = ? LIMIT 1
+					SELECT * FROM madmin_queue WHERE queue = ? AND rtime = ? AND cname = ?
+					ORDER BY id OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY
 				' ),
 				'delete' => $this->getConfig( 'sql/delete', '
 					DELETE FROM madmin_queue WHERE id = ? AND queue = ?
@@ -74,8 +75,11 @@ class Standard extends Base implements Iface
 			{
 				$sql['reserve'] = '
 					UPDATE mw_mqueue_test SET cname = ?, rtime = ? WHERE id IN (
-						SELECT id FROM mw_mqueue_test WHERE queue = ? AND rtime < ? LIMIT 1
+						SELECT id FROM mw_mqueue_test WHERE queue = ? AND rtime < ? ORDER BY rtime LIMIT 1
 					)
+				';
+				$sql['get'] = '
+					SELECT * FROM madmin_queue WHERE queue = ? AND rtime = ? AND cname = ? ORDER BY id LIMIT 1
 				';
 			}
 

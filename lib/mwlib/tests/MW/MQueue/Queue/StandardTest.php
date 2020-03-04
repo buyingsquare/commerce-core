@@ -57,26 +57,38 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 			'db' => \TestHelperMw::getConfig()->get( 'resource/db' ),
 			'sql' => array(
 				'insert' => 'INSERT INTO mw_mqueue_test (queue, cname, rtime, message) VALUES (?, ?, ?, ?)',
-				'get' => 'SELECT * FROM mw_mqueue_test WHERE queue = ? AND cname = ? AND rtime = ? LIMIT 1',
 				'delete' => 'DELETE FROM mw_mqueue_test WHERE id = ? AND queue = ?',
 			),
 		);
 
 		if( \TestHelperMw::getConfig()->get( 'resource/db/adapter' ) === 'mysql' )
 		{
-			$config['sql']['reserve'] = 'UPDATE mw_mqueue_test SET cname = ?, rtime = ? WHERE id IN (
-				SELECT * FROM (
-					SELECT id FROM mw_mqueue_test WHERE queue = ? AND rtime < ? LIMIT 1
-				) AS t
-			)';
+			$config['sql']['reserve'] = '
+				UPDATE mw_mqueue_test SET cname = ?, rtime = ? WHERE id IN (
+					SELECT * FROM (
+						SELECT id FROM mw_mqueue_test WHERE queue = ? AND rtime < ? ORDER BY rtime LIMIT 1
+					) AS t
+				)
+			';
+			$config['sql']['reserve'] = '
+				SELECT * FROM mw_mqueue_test WHERE queue = ? AND cname = ? AND rtime = ?
+				ORDER BY id LIMIT 1
+			';
 		}
 		else
 		{
-			$config['sql']['reserve'] = 'UPDATE mw_mqueue_test SET cname = ?, rtime = ? WHERE id IN (
-				SELECT * FROM (
-					SELECT id FROM mw_mqueue_test WHERE queue = ? AND rtime < ? ORDER BY rtime OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY
-				) AS t
-			)';
+			$config['sql']['reserve'] = '
+				UPDATE mw_mqueue_test SET cname = ?, rtime = ? WHERE id IN (
+					SELECT * FROM (
+						SELECT id FROM mw_mqueue_test WHERE queue = ? AND rtime < ?
+						ORDER BY rtime OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY
+					) AS t
+				)
+			';
+			$config['sql']['get'] = '
+				SELECT * FROM mw_mqueue_test WHERE queue = ? AND cname = ? AND rtime = ?
+				ORDER BY id OFFSET 0 ROWS FETCH NEXT 1 ROWS ONLY
+			';
 		}
 
 		$mqueue = new \Aimeos\MW\MQueue\Standard( $config );
