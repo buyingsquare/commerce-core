@@ -71,10 +71,14 @@ return array(
 			),
 			'count' => array(
 				'ansi' => '
-					SELECT COUNT( DISTINCT mord."id" ) AS "count"
-					FROM "mshop_subscription" AS mord
-					:joins
-					WHERE :cond
+					SELECT COUNT(*) AS "count"
+					FROM (
+						SELECT DISTINCT mord."id"
+						FROM "mshop_subscription" AS mord
+						:joins
+						WHERE :cond
+						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
+					) AS list
 				'
 			),
 			'newid' => array(
