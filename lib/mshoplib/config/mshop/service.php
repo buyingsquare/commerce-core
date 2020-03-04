@@ -83,7 +83,7 @@ return array(
 							FROM "mshop_service_list" AS mserli
 							:joins
 							WHERE :cond
-							GROUP BY :columns :key, mserli."id"
+							GROUP BY :key, mserli."id"
 							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list

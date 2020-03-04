@@ -83,7 +83,7 @@ return array(
 							FROM "mshop_media_list" AS mmedli
 							:joins
 							WHERE :cond
-							GROUP BY :columns :key, mmedli."id"
+							GROUP BY :key, mmedli."id"
 							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list

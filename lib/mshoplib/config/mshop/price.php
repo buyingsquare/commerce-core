@@ -83,7 +83,7 @@ return array(
 							FROM "mshop_price_list" AS mprili
 							:joins
 							WHERE :cond
-							GROUP BY :columns :key, mprili."id"
+							GROUP BY :key, mprili."id"
 							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list

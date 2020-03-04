@@ -83,7 +83,7 @@ return array(
 							FROM "mshop_attribute_list" AS mattli
 							:joins
 							WHERE :cond
-							GROUP BY :columns :key, mattli."id"
+							GROUP BY :key, mattli."id"
 							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list

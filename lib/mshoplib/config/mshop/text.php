@@ -83,7 +83,7 @@ return array(
 							FROM "mshop_text_list" AS mtexli
 							:joins
 							WHERE :cond
-							GROUP BY :columns :key, mtexli."id"
+							GROUP BY :key, mtexli."id"
 							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list

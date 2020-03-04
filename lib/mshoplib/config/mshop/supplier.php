@@ -168,7 +168,7 @@ return array(
 							FROM "mshop_supplier_list" AS msupli
 							:joins
 							WHERE :cond
-							GROUP BY :columns :key, msupli."id"
+							GROUP BY :key, msupli."id"
 							ORDER BY :order
 							OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 						) AS list
