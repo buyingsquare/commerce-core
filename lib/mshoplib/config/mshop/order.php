@@ -79,7 +79,7 @@ return array(
 							:joins
 							WHERE :cond
 							GROUP BY :columns
-								mordbaad."id", mordbaad."baseid", mordbaad."siteid", mordbaad."addrid", mordbaad."company",
+								mordbaad."id", mordbaad."baseid", mordbaad."siteid", mordbaad."addrid", mordbaad."type", mordbaad."company",
 								mordbaad."vatid", mordbaad."salutation", mordbaad."title", mordbaad."firstname", mordbaad."lastname",
 								mordbaad."address1", mordbaad."address2", mordbaad."address3", mordbaad."postal", mordbaad."city",
 								mordbaad."state", mordbaad."countryid", mordbaad."langid", mordbaad."telephone", mordbaad."email",
