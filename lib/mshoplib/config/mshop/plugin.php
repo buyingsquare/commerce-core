@@ -65,6 +65,7 @@ return array(
 							FROM "mshop_plugin_type" mpluty
 							:joins
 							WHERE :cond
+							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
@@ -130,6 +131,7 @@ return array(
 						FROM "mshop_plugin" mplu
 						:joins
 						WHERE :cond
+						ORDER BY "id"
 						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				'

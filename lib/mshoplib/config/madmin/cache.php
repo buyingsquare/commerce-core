@@ -49,6 +49,7 @@ return array(
 				'ansi' => '
 					SELECT "id", "value", "expire" FROM "madmin_cache"
 					WHERE :cond
+					ORDER BY "id"
 					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				',
 			),
@@ -59,6 +60,7 @@ return array(
 						SELECT DISTINCT "id"
 						FROM "madmin_cache"
 						WHERE :cond
+						ORDER BY "id"
 						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				',

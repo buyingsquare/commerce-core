@@ -59,6 +59,7 @@ return array(
 								FROM "mshop_service_list_type" as mserlity
 								:joins
 								WHERE :cond
+								ORDER BY "id"
 								OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 							) AS list
 						'
@@ -144,6 +145,7 @@ return array(
 							FROM "mshop_service_list" AS mserli
 							:joins
 							WHERE :cond
+							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
@@ -209,6 +211,7 @@ return array(
 							FROM "mshop_service_type" AS mserty
 							:joins
 							WHERE :cond
+							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
@@ -275,6 +278,7 @@ return array(
 						FROM "mshop_service" AS mser
 						:joins
 						WHERE :cond
+						ORDER BY "id"
 						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				'

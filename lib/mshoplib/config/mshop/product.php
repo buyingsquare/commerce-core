@@ -59,6 +59,7 @@ return array(
 								FROM "mshop_product_list_type" AS mprolity
 								:joins
 								WHERE :cond
+								ORDER BY "id"
 								OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 							) AS list
 						'
@@ -144,6 +145,7 @@ return array(
 							FROM "mshop_product_list" AS mproli
 							:joins
 							WHERE :cond
+							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
@@ -210,6 +212,7 @@ return array(
 								FROM "mshop_product_property_type" mproprty
 								:joins
 								WHERE :cond
+								ORDER BY "id"
 								OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 							) AS list
 						'
@@ -274,6 +277,7 @@ return array(
 							FROM "mshop_product_property" AS mpropr
 							:joins
 							WHERE :cond
+							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
@@ -339,6 +343,7 @@ return array(
 							FROM "mshop_product_type" AS mproty
 							:joins
 							WHERE :cond
+							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
@@ -406,6 +411,7 @@ return array(
 						FROM "mshop_product" AS mpro
 						:joins
 						WHERE :cond
+						ORDER BY "id"
 						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				'

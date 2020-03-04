@@ -59,6 +59,7 @@ return array(
 								FROM "mshop_text_list_type" as mtexlity
 								:joins
 								WHERE :cond
+								ORDER BY "id"
 								OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 							) AS list
 						'
@@ -140,6 +141,7 @@ return array(
 							FROM "mshop_text_list" AS mtexli
 							:joins
 							WHERE :cond
+							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
@@ -205,6 +207,7 @@ return array(
 							FROM "mshop_text_type" mtexty
 							:joins
 							WHERE :cond
+							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
@@ -270,6 +273,7 @@ return array(
 						FROM "mshop_text" AS mtex
 						:joins
 						WHERE :cond
+						ORDER BY "id"
 						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				'

@@ -59,6 +59,7 @@ return array(
 								FROM "mshop_attribute_list_type" AS mattlity
 								:joins
 								WHERE :cond
+								ORDER BY "id"
 								OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 							) AS list
 						'
@@ -145,6 +146,7 @@ return array(
 							FROM "mshop_attribute_list" AS mattli
 							:joins
 							WHERE :cond
+							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
@@ -211,6 +213,7 @@ return array(
 								FROM "mshop_attribute_property_type" mattprty
 								:joins
 								WHERE :cond
+								ORDER BY "id"
 								OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 							) AS list
 						'
@@ -275,6 +278,7 @@ return array(
 							FROM "mshop_attribute_property" AS mattpr
 							:joins
 							WHERE :cond
+							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
@@ -340,6 +344,7 @@ return array(
 							FROM "mshop_attribute_type" AS mattty
 							:joins
 							WHERE :cond
+							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					'
@@ -405,6 +410,7 @@ return array(
 						FROM "mshop_attribute" AS matt
 						:joins
 						WHERE :cond
+						ORDER BY "id"
 						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				'
