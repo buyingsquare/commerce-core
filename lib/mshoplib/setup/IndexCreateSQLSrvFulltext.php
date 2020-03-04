@@ -51,9 +51,9 @@ echo $sql . PHP_EOL;
 			}
 			catch( \Aimeos\MW\Setup\Exception $e )
 			{
-				$sql = 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX "pk_msindte_id"';
+				$this->execute( 'CREATE FULLTEXT CATALOG ft AS DEFAULT', 'db-product' );
+				$this->execute( 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX "pk_msindte_id"', 'db-product' );
 
-				$this->execute( $sql, 'db-product' );
 				return $this->status( 'done' );
 			}
 		}
