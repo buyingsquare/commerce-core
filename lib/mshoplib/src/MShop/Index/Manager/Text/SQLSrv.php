@@ -24,8 +24,9 @@ class SQLSrv
 		'index.text:relevance' => array(
 			'code' => 'index.text:relevance()',
 			'internalcode' => ':site AND mindte."langid" = $1 AND (
-				SELECT mindte_ct.RANK FROM "mshop_index_text" AS mindte_ft
-				JOIN CONTAINSTABLE("mshop_index_text", "content", $2) AS mindte_ct ON mindte_ft."prodid" = mindte_ct."KEY"
+				SELECT mindte_ft.RANK
+				FROM CONTAINSTABLE("mshop_index_text", "content", $2) AS mindte_ft
+				WHERE mindte."id" = mindte_ft."KEY"
 			)',
 			'label' => 'Product texts, parameter(<language ID>,<search term>)',
 			'type' => 'float',
@@ -34,7 +35,7 @@ class SQLSrv
 		),
 		'sort:index.text:relevance' => array(
 			'code' => 'sort:index.text:relevance()',
-			'internalcode' => 'mindte_ct.RANK',
+			'internalcode' => 'mindte_ft.RANK',
 			'label' => 'Product text sorting, parameter(<language ID>,<search term>)',
 			'type' => 'float',
 			'internaltype' => \Aimeos\MW\DB\Statement\Base::PARAM_FLOAT,
