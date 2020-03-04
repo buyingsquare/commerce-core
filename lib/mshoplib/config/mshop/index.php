@@ -337,9 +337,9 @@ return array(
 		'standard' => array(
 			'aggregate' => array(
 				'ansi' => '
-					SELECT "keycol" AS "key", COUNT("id") AS "count"
+					SELECT "key", COUNT("id") AS "count"
 					FROM (
-						SELECT :key AS "keycol", mpro."id" AS "id" :mincols
+						SELECT :key AS "key", mpro."id" AS "id" :mincols
 						FROM "mshop_product" AS mpro
 						:joins
 						WHERE :cond
