@@ -42,8 +42,9 @@ class IndexCreateSQLSrvFulltext extends \Aimeos\MW\Setup\Task\Base
 					SELECT object_id FROM sys.fulltext_indexes
 					WHERE object_id = OBJECT_ID(\'%1$s.mshop_index_text\')
 				', $schema->getDBName() );
+echo $sql . PHP_EOL;
 
-				$this->getValue( $sql, 'object_id', 'db-index' );
+				echo $this->getValue( $sql, 'object_id', 'db-product' );
 				return $this->status( 'OK' );
 			}
 			catch( \Aimeos\MW\Setup\Exception $e )
