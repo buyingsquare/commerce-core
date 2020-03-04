@@ -33,6 +33,7 @@ class IndexCreateSQLSrvFulltext extends \Aimeos\MW\Setup\Task\Base
 		$this->msg( 'Creating full text index on "mshop_index_text.content" for SQL Server', 0 );
 
 		$schema = $this->getSchema( 'db-product' );
+echo 'name: ' . $schema->getName() . PHP_EOL;
 
 		if( $schema->getName() === 'sqlsrv' && $schema->tableExists( 'mshop_index_text' ) )
 		{
