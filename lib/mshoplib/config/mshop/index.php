@@ -337,13 +337,13 @@ return array(
 		'standard' => array(
 			'aggregate' => array(
 				'ansi' => '
-					SELECT "key", COUNT("id") AS "count"
+					SELECT "keycol" AS "key", COUNT("id") AS "count"
 					FROM (
-						SELECT :key AS "key", mpro."id" AS "id" :mincols
+						SELECT :key AS "keycol", mpro."id" AS "id" :mincols
 						FROM "mshop_product" AS mpro
 						:joins
 						WHERE :cond
-						GROUP BY "key", "id"
+						GROUP BY "keycol", "id"
 						ORDER BY :order
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					) AS list
