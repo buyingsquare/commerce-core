@@ -23,7 +23,10 @@ class SQLSrv
 	private $searchConfig = array(
 		'index.text:relevance' => array(
 			'code' => 'index.text:relevance()',
-			'internalcode' => ':site AND mindte."langid" = $1 AND CONTAINS( mindte."content", $2 )',
+			'internalcode' => ':site AND mindte."langid" = $1 AND (
+				SELECT mindte_ct.RANK FROM "mshop_index_text" AS mindte_ft
+				JOIN CONTAINSTABLE("mshop_index_text", "content", $2) AS mindte_ct ON mindte_ft."prodid" = mindte_ct."KEY"
+			)',
 			'label' => 'Product texts, parameter(<language ID>,<search term>)',
 			'type' => 'float',
 			'internaltype' => \Aimeos\MW\DB\Statement\Base::PARAM_FLOAT,
@@ -31,7 +34,7 @@ class SQLSrv
 		),
 		'sort:index.text:relevance' => array(
 			'code' => 'sort:index.text:relevance()',
-			'internalcode' => '1',
+			'internalcode' => 'mindte_ct.RANK',
 			'label' => 'Product text sorting, parameter(<language ID>,<search term>)',
 			'type' => 'float',
 			'internaltype' => \Aimeos\MW\DB\Statement\Base::PARAM_FLOAT,
@@ -56,7 +59,7 @@ class SQLSrv
 
 			if( isset( $params[1] ) )
 			{
-				$str = '';
+				$strings = [];
 				$regex = '/(\&|\||\!|\-|\+|\>|\<|\(|\)|\~|\*|\:|\"|\'|\@|\\| )+/';
 				$search = trim( preg_replace( $regex, ' ', $params[1] ), "' \t\n\r\0\x0B" );
 
@@ -65,11 +68,11 @@ class SQLSrv
 					$len = strlen( $part );
 
 					if( $len > 0 ) {
-						$str .= ' "' . mb_strtolower( $part ) . '*"';
+						$strings[] = '"' . mb_strtolower( $part ) . '*"';
 					}
 				}
 
-				$params[1] = '\'' . $str . '\'';
+				$params[1] = '\'' . join( ' OR ', $strings ) . '\'';
 			}
 
 			return $params;
