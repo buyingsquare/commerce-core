@@ -34,6 +34,7 @@ class IndexCreateSQLSrvFulltext extends \Aimeos\MW\Setup\Task\Base
 
 		$schema = $this->getSchema( 'db-product' );
 echo 'name: ' . $schema->getName() . PHP_EOL;
+echo 'exists: ' . ((int) $schema->tableExists( 'mshop_index_text' )) . PHP_EOL;
 
 		if( $schema->getName() === 'sqlsrv' && $schema->tableExists( 'mshop_index_text' ) )
 		{
@@ -50,7 +51,9 @@ echo $sql . PHP_EOL;
 			}
 			catch( \Aimeos\MW\Setup\Exception $e )
 			{
-				$this->execute( 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX "pk_msindte_id"' );
+				$sql = 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX "pk_msindte_id"';
+
+				$this->execute( $sql, 'db-product' );
 				return $this->status( 'done' );
 			}
 		}
