@@ -19,7 +19,7 @@ class PgSQLTest extends \PHPUnit\Framework\TestCase
 		$context = clone \TestHelperMShop::getContext();
 		$config = $context->getConfig();
 
-		$dbadapter = $config->get( 'resource/db-index/adapter', $config->get( 'resource/db/adapter' ) );
+		$dbadapter = $config->get( 'resource/db-product/adapter', $config->get( 'resource/db/adapter' ) );
 
 		if( $dbadapter !== 'pgsql' ) {
 			$this->markTestSkipped( 'PostgreSQL specific test' );
