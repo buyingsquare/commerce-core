@@ -85,6 +85,15 @@ class SQLSrv
 		$expr = $this->getSiteString( 'mindte."siteid"', $level );
 		$this->searchConfig[$name]['internalcode'] = str_replace( ':site', $expr, $this->searchConfig[$name]['internalcode'] );
 //		$this->searchConfig['index.text:relevance']['function'] = $func;
+
+		$this->searchConfig['index.text:relevance']['function'] = function( $source, array $params ) {
+
+			if( isset( $params[1] ) ) {
+				$params[1] = mb_strtolower( $params[1] );
+			}
+
+			return $params;
+		};
 	}
 
 
