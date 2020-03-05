@@ -879,7 +879,9 @@ abstract class Base extends \Aimeos\MW\Common\Manager\Base
 
 			$total = (int) $row['count'];
 		}
-
+if( strncmp( $cfgPathSearch, 'mshop/index/manager/text/', 25 ) === 0 ) {
+	echo str_replace( $find, $replace, $this->getSqlConfig( $cfgPathSearch ) ) . PHP_EOL;
+}
 		return $this->getSearchResults( $conn, str_replace( $find, $replace, $this->getSqlConfig( $cfgPathSearch ) ) );
 	}
 

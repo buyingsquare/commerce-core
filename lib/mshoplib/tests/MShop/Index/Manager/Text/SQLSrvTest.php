@@ -47,6 +47,14 @@ class SQLSrvTest extends \PHPUnit\Framework\TestCase
 
 	public function testSearchItemsRelevance()
 	{
+		$dbm = $this->context->getDatabaseManager();
+		$conn = $dbm->acquire( 'db-product' );
+		$result = $conn->create( 'SELECT * FROM mshop_index_text' )->execute();
+		while( $row = $result->fetch() ) {
+			print_r( $row );
+		}
+		$dbm->release( $conn, 'db-product' );
+
 		$search = $this->object->createSearch();
 		$search->setConditions( $search->compare( '>', $search->createFunction( 'index.text:relevance', ['de', 'T-DISC'] ), 0 ) );
 		$search->setSortations( [$search->sort( '-', $search->createFunction( 'sort:index.text:relevance', ['de', 'T-DISC'] ) )] );
