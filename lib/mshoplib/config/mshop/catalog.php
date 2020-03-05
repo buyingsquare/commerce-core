@@ -207,7 +207,7 @@ return array(
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 						) AS list
 					',
-					'ansi' => '
+					'mysql' => '
 						SELECT COUNT(*) AS "count"
 						FROM (
 							SELECT DISTINCT mcatli."id"
@@ -366,7 +366,7 @@ return array(
 						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
 					) AS list
 				',
-				'ansi' => '
+				'mysql' => '
 					SELECT COUNT(*) AS "count"
 					FROM (
 						SELECT DISTINCT mcat."id"
