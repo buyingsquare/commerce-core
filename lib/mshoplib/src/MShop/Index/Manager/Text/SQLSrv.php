@@ -37,7 +37,7 @@ class SQLSrv
 		'sort:index.text:relevance' => array(
 			'code' => 'sort:index.text:relevance()',
 //			'internalcode' => 'mindte_ft.RANK',
-			'internalcode' => 'MIN( -CHARINDEX( $2, "content" ) )',
+			'internalcode' => '-CHARINDEX( $2, "content" )',
 			'label' => 'Product text sorting, parameter(<language ID>,<search term>)',
 			'type' => 'float',
 			'internaltype' => \Aimeos\MW\DB\Statement\Base::PARAM_FLOAT,
