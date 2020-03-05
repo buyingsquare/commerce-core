@@ -37,7 +37,7 @@ echo 'name: ' . $schema->getName() . PHP_EOL;
 echo 'exists: ' . ((int) $schema->tableExists( 'mshop_index_text' )) . PHP_EOL;
 
 $conn = $this->acquire( 'db-product' );
-$result = $conn->create( 'SELECT * FROM SYSOBJECTS WHERE xtype = \'U\' AND OBJECT_ID(\'aimeos.mshop_index_text\')' )->execute();
+$result = $conn->create( 'SELECT * FROM sys.objects WHERE type = \'U\' AND object_id = OBJECT_ID(\'aimeos.mshop_index_text\')' )->execute();
 while( $row = $result->fetch() ) {
 	print_r( $row );
 }
