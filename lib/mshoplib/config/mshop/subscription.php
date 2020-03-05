@@ -21,6 +21,18 @@ return array(
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 					) AS list
 					GROUP BY "key"
+				',
+				'mysql' => '
+					SELECT "key", COUNT("val") AS "count"
+					FROM (
+						SELECT :key AS "key", :val AS "val"
+						FROM "mshop_subscription" AS mord
+						:joins
+						WHERE :cond
+						ORDER BY :order
+						LIMIT :size OFFSET :start
+					) AS list
+					GROUP BY "key"
 				'
 			),
 			'insert' => array(
@@ -67,6 +79,25 @@ return array(
 						mord."ctime", mord."mtime", mord."editor"
 					ORDER BY :order
 					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
+				',
+				'mysql' => '
+					SELECT :columns
+						mord."id" AS "subscription.id", mord."baseid" AS "subscription.ordbaseid",
+						mord."ordprodid" AS "subscription.ordprodid", mord."siteid" AS "subscription.siteid",
+						mord."next" AS "subscription.datenext", mord."end" AS "subscription.dateend",
+						mord."interval" AS "subscription.interval", mord."reason" AS "subscription.reason",
+						mord."productid" AS "subscription.productid", mord."period" AS "subscription.period",
+						mord."status" AS "subscription.status", mord."ctime" AS "subscription.ctime",
+						mord."mtime" AS "subscription.mtime", mord."editor" AS "subscription.editor"
+					FROM "mshop_subscription" AS mord
+					:joins
+					WHERE :cond
+					GROUP BY :columns
+						mord."id", mord."baseid", mord."ordprodid", mord."siteid", mord."next", mord."end",
+						mord."interval", mord."reason", mord."productid", mord."period", mord."status",
+						mord."ctime", mord."mtime", mord."editor"
+					ORDER BY :order
+					LIMIT :size OFFSET :start
 				'
 			),
 			'count' => array(
@@ -79,6 +110,17 @@ return array(
 						WHERE :cond
 						ORDER BY "id"
 						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
+					) AS list
+				',
+				'mysql' => '
+					SELECT COUNT(*) AS "count"
+					FROM (
+						SELECT DISTINCT mord."id"
+						FROM "mshop_subscription" AS mord
+						:joins
+						WHERE :cond
+						ORDER BY "id"
+						LIMIT 10000 OFFSET 0
 					) AS list
 				'
 			),

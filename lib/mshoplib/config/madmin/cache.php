@@ -52,6 +52,12 @@ return array(
 					ORDER BY "id"
 					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
 				',
+				'mysql' => '
+					SELECT "id", "value", "expire" FROM "madmin_cache"
+					WHERE :cond
+					ORDER BY "id"
+					LIMIT :size OFFSET :start
+				',
 			),
 			'count' => array(
 				'ansi' => '
@@ -62,6 +68,16 @@ return array(
 						WHERE :cond
 						ORDER BY "id"
 						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
+					) AS list
+				',
+				'mysql' => '
+					SELECT COUNT(*) AS "count"
+					FROM(
+						SELECT DISTINCT "id"
+						FROM "madmin_cache"
+						WHERE :cond
+						ORDER BY "id"
+						LIMIT 10000 OFFSET 0
 					) AS list
 				',
 			),

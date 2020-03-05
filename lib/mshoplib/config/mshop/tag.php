@@ -48,6 +48,19 @@ return array(
 						WHERE :cond
 						ORDER BY :order
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
+					',
+					'mysql' => '
+						SELECT DISTINCT :columns
+							mtagty."id" AS "tag.type.id", mtagty."siteid" AS "tag.type.siteid",
+							mtagty."code" AS "tag.type.code", mtagty."domain" AS "tag.type.domain",
+							mtagty."label" AS "tag.type.label", mtagty."status" AS "tag.type.status",
+							mtagty."mtime" AS "tag.type.mtime", mtagty."editor" AS "tag.type.editor",
+							mtagty."ctime" AS "tag.type.ctime", mtagty."pos" AS "tag.type.position"
+						FROM "mshop_tag_type" mtagty
+						:joins
+						WHERE :cond
+						ORDER BY :order
+						LIMIT :size OFFSET :start
 					'
 				),
 				'count' => array(
@@ -60,6 +73,17 @@ return array(
 							WHERE :cond
 							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
+						) AS list
+					',
+					'mysql' => '
+						SELECT COUNT(*) AS "count"
+						FROM (
+							SELECT DISTINCT mtagty."id"
+							FROM "mshop_tag_type" mtagty
+							:joins
+							WHERE :cond
+							ORDER BY "id"
+							LIMIT 10000 OFFSET 0
 						) AS list
 					'
 				),
@@ -112,6 +136,19 @@ return array(
 					WHERE :cond
 					ORDER BY :order
 					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
+				',
+				'mysql' => '
+					SELECT DISTINCT :columns
+						mtag."id" AS "tag.id", mtag."siteid" AS "tag.siteid",
+						mtag."type" AS "tag.type", mtag."langid" AS "tag.languageid",
+						mtag."domain" AS "tag.domain", mtag."label" AS "tag.label",
+						mtag."mtime" AS "tag.mtime", mtag."editor" AS "tag.editor",
+						mtag."ctime" AS "tag.ctime"
+					FROM "mshop_tag" AS mtag
+					:joins
+					WHERE :cond
+					ORDER BY :order
+					LIMIT :size OFFSET :start
 				'
 			),
 			'count' => array(
@@ -124,6 +161,17 @@ return array(
 						WHERE :cond
 						ORDER BY "id"
 						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
+					) AS list
+				',
+				'mysql' => '
+					SELECT COUNT(*) AS "count"
+					FROM (
+						SELECT DISTINCT mtag."id"
+						FROM "mshop_tag" AS mtag
+						:joins
+						WHERE :cond
+						ORDER BY "id"
+						LIMIT 10000 OFFSET 0
 					) AS list
 				'
 			),

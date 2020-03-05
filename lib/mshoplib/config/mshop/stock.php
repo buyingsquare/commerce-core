@@ -48,6 +48,19 @@ return array(
 						WHERE :cond
 						ORDER BY :order
 						OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
+					',
+					'mysql' => '
+						SELECT DISTINCT :columns
+							mstoty."id" AS "stock.type.id", mstoty."siteid" AS "stock.type.siteid",
+							mstoty."code" AS "stock.type.code", mstoty."domain" AS "stock.type.domain",
+							mstoty."label" AS "stock.type.label", mstoty."status" AS "stock.type.status",
+							mstoty."mtime" AS "stock.type.mtime", mstoty."editor" AS "stock.type.editor",
+							mstoty."ctime" AS "stock.type.ctime", mstoty."pos" AS "stock.type.position"
+						FROM "mshop_stock_type" mstoty
+						:joins
+						WHERE :cond
+						ORDER BY :order
+						LIMIT :size OFFSET :start
 					'
 				),
 				'count' => array(
@@ -60,6 +73,17 @@ return array(
 							WHERE :cond
 							ORDER BY "id"
 							OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
+						) AS list
+					',
+					'mysql' => '
+						SELECT COUNT(*) AS "count"
+						FROM (
+							SELECT DISTINCT mstoty."id"
+							FROM "mshop_stock_type" mstoty
+							:joins
+							WHERE :cond
+							ORDER BY "id"
+							LIMIT 10000 OFFSET 0
 						) AS list
 					'
 				),
@@ -113,6 +137,19 @@ return array(
 					WHERE :cond
 					ORDER BY :order
 					OFFSET :start ROWS FETCH NEXT :size ROWS ONLY
+				',
+				'mysql' => '
+					SELECT DISTINCT :columns
+						msto."id" AS "stock.id", msto."productcode" AS "stock.productcode",
+						msto."siteid" AS "stock.siteid", msto."type" AS "stock.type",
+						msto."stocklevel" AS "stock.stocklevel", msto."backdate" AS "stock.backdate",
+						msto."timeframe" AS "stock.timeframe", msto."mtime" AS "stock.mtime",
+						msto."ctime" AS "stock.ctime", msto."editor" AS "stock.editor"
+					FROM "mshop_stock" AS msto
+					:joins
+					WHERE :cond
+					ORDER BY :order
+					LIMIT :size OFFSET :start
 				'
 			),
 			'count' => array(
@@ -125,6 +162,17 @@ return array(
 						WHERE :cond
 						ORDER BY "id"
 						OFFSET 0 ROWS FETCH NEXT 10000 ROWS ONLY
+					) AS list
+				',
+				'mysql' => '
+					SELECT COUNT(*) AS "count"
+					FROM (
+						SELECT DISTINCT msto."id"
+						FROM "mshop_stock" AS msto
+						:joins
+						WHERE :cond
+						ORDER BY "id"
+						LIMIT 10000 OFFSET 0
 					) AS list
 				'
 			),
