@@ -28,7 +28,7 @@ class SQLSrv
 				FROM CONTAINSTABLE("mshop_index_text", "content", $2) AS mindte_ft
 				WHERE mindte."id" = mindte_ft."KEY"
 			)',
-*/			'internalcode' => ':site AND mindte."langid" = $1 AND CHARINDEX( $2, "content" )',
+*/			'internalcode' => ':site AND mindte."langid" = $1 AND CHARINDEX( $2, content )',
 			'label' => 'Product texts, parameter(<language ID>,<search term>)',
 			'type' => 'float',
 			'internaltype' => \Aimeos\MW\DB\Statement\Base::PARAM_FLOAT,
@@ -37,7 +37,7 @@ class SQLSrv
 		'sort:index.text:relevance' => array(
 			'code' => 'sort:index.text:relevance()',
 //			'internalcode' => 'mindte_ft.RANK',
-			'internalcode' => '-CHARINDEX( $2, "content" )',
+			'internalcode' => '-CHARINDEX( $2, content )',
 			'label' => 'Product text sorting, parameter(<language ID>,<search term>)',
 			'type' => 'float',
 			'internaltype' => \Aimeos\MW\DB\Statement\Base::PARAM_FLOAT,

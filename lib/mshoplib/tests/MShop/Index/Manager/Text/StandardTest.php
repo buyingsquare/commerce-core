@@ -66,6 +66,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testSearchItemsRelevance()
 	{
+		$config = $this->context->getConfig();
 		$dbadapter = $config->get( 'resource/db-product/adapter', $config->get( 'resource/db/adapter' ) );
 
 		if( $dbadapter === 'sqlsrv' ) {
@@ -84,6 +85,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testSearchItemsRelevanceCase()
 	{
+		$config = $this->context->getConfig();
 		$dbadapter = $config->get( 'resource/db-product/adapter', $config->get( 'resource/db/adapter' ) );
 
 		if( $dbadapter === 'sqlsrv' ) {
