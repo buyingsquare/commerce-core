@@ -70,7 +70,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 					) AS t
 				)
 			';
-			$config['sql']['reserve'] = '
+			$config['sql']['get'] = '
 				SELECT * FROM mw_mqueue_test WHERE queue = ? AND cname = ? AND rtime = ?
 				ORDER BY id LIMIT 1
 			';
@@ -105,6 +105,7 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 	public function testProcess()
 	{
 		$this->object->add( 'test' );
+
 		$msg = $this->object->get();
 
 		$this->assertInstanceOf( \Aimeos\MW\MQueue\Message\Iface::class, $msg );
