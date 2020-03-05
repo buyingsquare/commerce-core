@@ -30,7 +30,7 @@ class IndexCreateSQLSrvFulltext extends \Aimeos\MW\Setup\Task\Base
 	 */
 	public function migrate()
 	{
-		$this->msg( 'Creating full text index on "mshop_index_text.content" for SQL Server', 0 );
+/*		$this->msg( 'Creating full text index on "mshop_index_text.content" for SQL Server', 0 );
 
 		$schema = $this->getSchema( 'db-product' );
 echo 'name: ' . $schema->getName() . PHP_EOL;
@@ -43,7 +43,7 @@ while( $row = $result->fetch() ) {
 }
 $this->release( $conn, 'db-product' );
 
-		if( $schema->getName() === 'sqlsrv' /*&& $schema->tableExists( 'mshop_index_text' )*/ )
+		if( $schema->getName() === 'sqlsrv' && $schema->tableExists( 'mshop_index_text' ) )
 		{
 			try
 			{
@@ -66,5 +66,5 @@ echo $sql . PHP_EOL;
 		}
 
 		$this->status( 'OK' );
-	}
+	*/	}
 }
