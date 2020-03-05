@@ -10,8 +10,9 @@ php:
   - 7.3
 
 env:
-  - DB=mssql
+  - DB=mysql
   - DB=pgsql
+  - DB=mssql
 
 before_script:
   - travis_retry composer update
