@@ -66,6 +66,14 @@ class StandardTest extends \PHPUnit\Framework\TestCase
 
 	public function testSearchItemsRelevance()
 	{
+$dbm = $this->context->getDatabaseManager();
+$conn = $dbm->acquire( 'db-product' );
+$result = $conn->create( 'SELECT * FROM mshop_index_text' )->execute();
+while( $row = $result->fetch() ) {
+	print_r( $row );
+}
+$dbm->release( $conn, 'db-product' );
+
 		$config = $this->context->getConfig();
 		$dbadapter = $config->get( 'resource/db-product/adapter', $config->get( 'resource/db/adapter' ) );
 
