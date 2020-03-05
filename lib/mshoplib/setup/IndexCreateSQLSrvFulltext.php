@@ -36,6 +36,13 @@ class IndexCreateSQLSrvFulltext extends \Aimeos\MW\Setup\Task\Base
 echo 'name: ' . $schema->getName() . PHP_EOL;
 echo 'exists: ' . ((int) $schema->tableExists( 'mshop_index_text' )) . PHP_EOL;
 
+$conn = $this->acquire( $name );
+$result = $conn->create( 'sp_help mshop_index_text' )->execute();
+while( $row = $result->fetch() ) {
+	print_r( $row );
+}
+$this->release( $conn, $name );
+
 		if( $schema->getName() === 'sqlsrv' /*&& $schema->tableExists( 'mshop_index_text' )*/ )
 		{
 			try
