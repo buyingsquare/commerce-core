@@ -37,7 +37,7 @@ echo 'name: ' . $schema->getName() . PHP_EOL;
 echo 'exists: ' . ((int) $schema->tableExists( 'mshop_index_text' )) . PHP_EOL;
 
 $conn = $this->acquire( 'db-product' );
-$result = $conn->create( 'sp_help mshop_index_text' )->execute();
+$result = $conn->create( 'SELECT * FROM SYSOBJECTS WHERE xtype = \'U\' AND OBJECT_ID(\'aimeos.mshop_index_text\')' )->execute();
 while( $row = $result->fetch() ) {
 	print_r( $row );
 }
@@ -59,7 +59,7 @@ echo $sql . PHP_EOL;
 			catch( \Aimeos\MW\Setup\Exception $e )
 			{
 				$this->execute( 'CREATE FULLTEXT CATALOG ft AS DEFAULT', 'db-product' );
-				$this->execute( 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX "pk_msindte_id"', 'db-product' );
+				$this->execute( 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX pk_msindte_id', 'db-product' );
 
 				return $this->status( 'done' );
 			}
