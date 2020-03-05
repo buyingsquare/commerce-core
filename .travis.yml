@@ -2,6 +2,10 @@ sudo: true
 dist: xenial
 language: php
 
+services:
+  - mysql
+  - postgresql
+
 php:
   - 7.3
 
