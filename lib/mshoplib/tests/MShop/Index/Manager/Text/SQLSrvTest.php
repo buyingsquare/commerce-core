@@ -11,13 +11,14 @@ namespace Aimeos\MShop\Index\Manager\Text;
 
 class SQLSrvTest extends \PHPUnit\Framework\TestCase
 {
+	private $context;
 	private $object;
 
 
 	protected function setUp() : void
 	{
-		$context = clone \TestHelperMShop::getContext();
-		$config = $context->getConfig();
+		$this->context = clone \TestHelperMShop::getContext();
+		$config = $this->context->getConfig();
 
 		$dbadapter = $config->get( 'resource/db-index/adapter', $config->get( 'resource/db/adapter' ) );
 
@@ -25,13 +26,13 @@ class SQLSrvTest extends \PHPUnit\Framework\TestCase
 			$this->markTestSkipped( 'SQL Server specific test' );
 		}
 
-		$this->object = new \Aimeos\MShop\Index\Manager\Text\SQLSrv( \TestHelperMShop::getContext() );
+		$this->object = new \Aimeos\MShop\Index\Manager\Text\SQLSrv( $this->context );
 	}
 
 
 	protected function tearDown() : void
 	{
-		unset( $this->object );
+		unset( $this->object, $this->context );
 	}
 
 

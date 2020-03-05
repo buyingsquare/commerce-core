@@ -55,7 +55,7 @@ class SQLSrv
 	{
 		parent::__construct( $context );
 
-		$level = \Aimeos\MShop\Locale\Manager\Base::SITE_ALL;
+/*		$level = \Aimeos\MShop\Locale\Manager\Base::SITE_ALL;
 		$level = $context->getConfig()->get( 'mshop/index/manager/sitemode', $level );
 
 		$func = function( $source, array $params ) {
@@ -85,7 +85,7 @@ class SQLSrv
 		$expr = $this->getSiteString( 'mindte."siteid"', $level );
 		$this->searchConfig[$name]['internalcode'] = str_replace( ':site', $expr, $this->searchConfig[$name]['internalcode'] );
 		$this->searchConfig['index.text:relevance']['function'] = $func;
-	}
+*/	}
 
 
 	/**
