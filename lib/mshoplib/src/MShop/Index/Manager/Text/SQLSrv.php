@@ -100,7 +100,7 @@ class SQLSrv
 		$expr = $this->getSiteString( 'mindte."siteid"', $level );
 
 		$this->searchConfig['index.text:relevance']['internalcode'] = str_replace( ':site', $expr, $search );
-		$this->searchConfig['sort:index.text:relevance']['function'] = $sort;
+		$this->searchConfig['sort:index.text:relevance']['internalcode'] = $sort;
 		$this->searchConfig['index.text:relevance']['function'] = $func;
 	}
 
