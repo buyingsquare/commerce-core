@@ -8,11 +8,11 @@ services:
 
 php:
   - 7.4
-  - 7.3
+#  - 7.3
 
 env:
-  - DB=mysql
-  - DB=pgsql
+#  - DB=mysql
+#  - DB=pgsql
   - DB=sqlsrv
 
 before_script:
