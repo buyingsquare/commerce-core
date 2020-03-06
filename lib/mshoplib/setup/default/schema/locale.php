@@ -77,7 +77,7 @@ return array(
 			$table = $schema->createTable( 'mshop_locale' );
 
 			$table->addColumn( 'id', 'integer', array( 'autoincrement' => true ) );
-			$table->addColumn( 'siteid', 'string', ['length' => 255, 'notnull' => false] );
+			$table->addColumn( 'siteid', 'string', ['length' => 255] );
 			$table->addColumn( 'langid', 'string', array( 'length' => 5 ) );
 			$table->addColumn( 'currencyid', 'string', array( 'length' => 3 ) );
 			$table->addColumn( 'pos', 'integer', [] );
