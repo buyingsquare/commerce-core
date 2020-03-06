@@ -23,12 +23,6 @@ class SQLSrv
 	private $searchConfig = array(
 		'index.text:relevance' => array(
 			'code' => 'index.text:relevance()',
-/*			'internalcode' => ':site AND mindte."langid" = $1 AND (
-				SELECT mindte_ft.RANK
-				FROM CONTAINSTABLE("mshop_index_text", "content", $2) AS mindte_ft
-				WHERE mindte."id" = mindte_ft."KEY"
-			)',
-*/			'internalcode' => ':site AND mindte."langid" = $1 AND CHARINDEX( $2, content )',
 			'label' => 'Product texts, parameter(<language ID>,<search term>)',
 			'type' => 'float',
 			'internaltype' => \Aimeos\MW\DB\Statement\Base::PARAM_FLOAT,
@@ -36,8 +30,6 @@ class SQLSrv
 		),
 		'sort:index.text:relevance' => array(
 			'code' => 'sort:index.text:relevance()',
-//			'internalcode' => 'mindte_ft.RANK',
-			'internalcode' => '-CHARINDEX( $2, content )',
 			'label' => 'Product text sorting, parameter(<language ID>,<search term>)',
 			'type' => 'float',
 			'internaltype' => \Aimeos\MW\DB\Statement\Base::PARAM_FLOAT,
@@ -58,42 +50,58 @@ class SQLSrv
 		$level = \Aimeos\MShop\Locale\Manager\Base::SITE_ALL;
 		$level = $context->getConfig()->get( 'mshop/index/manager/sitemode', $level );
 
-		$func = function( $source, array $params ) {
+		if( $context->getConfig()->get( 'mshop/index/manager/text/sqlsrv/fulltext', false ) )
+		{
+			$search = ':site AND mindte."langid" = $1 AND (
+				SELECT mindte_ft.RANK
+				FROM CONTAINSTABLE("mshop_index_text", "content", $2) AS mindte_ft
+				WHERE mindte."id" = mindte_ft."KEY"
+			)';
+			$sort = 'mindte_ft.RANK';
 
-			if( isset( $params[1] ) )
-			{
-				$strings = [];
-				$regex = '/(\&|\||\!|\-|\+|\>|\<|\(|\)|\~|\*|\:|\"|\'|\@|\\| )+/';
-				$search = trim( preg_replace( $regex, ' ', $params[1] ), "' \t\n\r\0\x0B" );
+			$func = function( $source, array $params ) {
 
-				foreach( explode( ' ', $search ) as $part )
+				if( isset( $params[1] ) )
 				{
-					$len = strlen( $part );
+					$strings = [];
+					$regex = '/(\&|\||\!|\-|\+|\>|\<|\(|\)|\~|\*|\:|\"|\'|\@|\\| )+/';
+					$search = trim( preg_replace( $regex, ' ', $params[1] ), "' \t\n\r\0\x0B" );
 
-					if( $len > 0 ) {
-						$strings[] = '"' . mb_strtolower( $part ) . '*"';
+					foreach( explode( ' ', $search ) as $part )
+					{
+						$len = strlen( $part );
+
+						if( $len > 0 ) {
+							$strings[] = '"' . mb_strtolower( $part ) . '*"';
+						}
 					}
+
+					$params[1] = '\'' . join( ' | ', $strings ) . '\'';
 				}
 
-				$params[1] = '\'' . join( ' OR ', $strings ) . '\'';
-			}
+				return $params;
+			};
+		}
+		else
+		{
+			$search = ':site AND mindte."langid" = $1 AND CHARINDEX( $2, content )';
+			$sort = '-CHARINDEX( $2, content )';
 
-			return $params;
-		};
+			$func = function( $source, array $params ) {
 
-		$name = 'index.text:relevance';
+				if( isset( $params[1] ) ) {
+					$params[1] = mb_strtolower( $params[1] );
+				}
+
+				return $params;
+			};
+		}
+
 		$expr = $this->getSiteString( 'mindte."siteid"', $level );
-		$this->searchConfig[$name]['internalcode'] = str_replace( ':site', $expr, $this->searchConfig[$name]['internalcode'] );
-//		$this->searchConfig['index.text:relevance']['function'] = $func;
 
-		$this->searchConfig['index.text:relevance']['function'] = function( $source, array $params ) {
-
-			if( isset( $params[1] ) ) {
-				$params[1] = mb_strtolower( $params[1] );
-			}
-
-			return $params;
-		};
+		$this->searchConfig['index.text:relevance']['internalcode'] = str_replace( ':site', $expr, $search );
+		$this->searchConfig['sort:index.text:relevance']['function'] = $sort;
+		$this->searchConfig['index.text:relevance']['function'] = $func;
 	}
 
 
