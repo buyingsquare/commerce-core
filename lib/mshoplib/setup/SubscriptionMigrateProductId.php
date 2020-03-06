@@ -43,7 +43,7 @@ class SubscriptionMigrateProductId extends \Aimeos\MW\Setup\Task\Base
 		$conn = $this->acquire( $dbdomain );
 		$update = '
 			UPDATE "mshop_subscription"
-			SET "productid" IN (
+			SET "productid" = (
 				SELECT obp."prodid"
 				FROM "mshop_order_base_product" AS obp
 				WHERE "mshop_subscription"."ordprodid" = obp."id"
