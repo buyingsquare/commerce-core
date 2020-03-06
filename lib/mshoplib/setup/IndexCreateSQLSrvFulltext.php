@@ -47,7 +47,7 @@ while( $row = $result->fetch() ) {
 }
 $this->release( $conn, 'db-product' );
 
-		if( $schema->getName() === 'sqlsrv' /*&& $schema->tableExists( 'mshop_index_text' )*/ )
+		if( $schema->getName() === 'sqlsrv' && $schema->tableExists( 'mshop_index_text' ) )
 		{
 			try
 			{
@@ -62,10 +62,13 @@ echo $sql . PHP_EOL;
 			}
 			catch( \Aimeos\MW\Setup\Exception $e )
 			{
+				$sql = 'select name from sys.indexes where object_id = OBJECT_ID(\'mshop_index_text\') AND is_primary_key = 1';
+				$name = $this->getValue( $sql, 'name', 'db-product' );
+
 echo 'CREATE FULLTEXT CATALOG "aimeos"' . PHP_EOL;
 				$this->execute( 'CREATE FULLTEXT CATALOG "aimeos"', 'db-product' );
-echo 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX PK__mshop_in__3213E83FA26BC3F7 ON "aimeos"' . PHP_EOL;
-				$this->execute( 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX PK__mshop_in__3213E83FA26BC3F7 ON "aimeos"', 'db-product' );
+echo 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX ' . $name . ' ON "aimeos"' . PHP_EOL;
+				$this->execute( 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX ' . $name . ' ON "aimeos"', 'db-product' );
 
 				return $this->status( 'done' );
 			}
