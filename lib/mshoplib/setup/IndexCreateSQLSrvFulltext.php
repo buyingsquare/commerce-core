@@ -34,6 +34,7 @@ class IndexCreateSQLSrvFulltext extends \Aimeos\MW\Setup\Task\Base
 
 		$schema = $this->getSchema( 'db-product' );
 
+$conn = $this->acquire( 'db-product' );
 $result = $conn->create( 'select * from sys.indexes where object_id = OBJECT_ID(\'mshop_index_text\')' )->execute();
 while( $row = $result->fetch() ) {
 	print_r( $row );
