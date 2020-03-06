@@ -47,7 +47,7 @@ $this->release( $conn, 'db-product' );
 			{
 				$sql = sprintf( '
 					SELECT object_id FROM sys.fulltext_indexes
-					WHERE object_id = OBJECT_ID(\'%1$s.mshop_index_text\')
+					WHERE object_id = OBJECT_ID(\'%1$s.dbo.mshop_index_text\')
 				', $schema->getDBName() );
 echo $sql . PHP_EOL;
 
@@ -56,14 +56,14 @@ echo $sql . PHP_EOL;
 			}
 			catch( \Aimeos\MW\Setup\Exception $e )
 			{
+echo 'fts installed: ' . $this->getValue( 'SELECT SERVERPROPERTY(\'IsFullTextInstalled\') as prop', 'prop', 'db-product' ) . PHP_EOL;
 				$sql = sprintf( '
 					SELECT name FROM sys.indexes
-					WHERE object_id = OBJECT_ID(\'%1$s.mshop_index_text\') AND is_primary_key = 1
+					WHERE object_id = OBJECT_ID(\'%1$s.dbo.mshop_index_text\') AND is_primary_key = 1
 				', $schema->getDBName() );
 echo $sql . PHP_EOL;
 				$name = $this->getValue( $sql, 'name', 'db-product' );
 
-echo 'fts installed: ' . $this->getValue( 'SELECT SERVERPROPERTY(\'IsFullTextInstalled\') as prop', 'prop', 'db-product' ) . PHP_EOL;
 echo 'CREATE FULLTEXT CATALOG "aimeos"' . PHP_EOL;
 				$this->execute( 'CREATE FULLTEXT CATALOG "aimeos"', 'db-product' );
 echo 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX ' . $name . ' ON "aimeos"' . PHP_EOL;
