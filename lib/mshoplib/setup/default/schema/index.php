@@ -89,7 +89,7 @@ return array(
 			$table = $schema->createTable( 'mshop_index_text' );
 			$table->addOption( 'engine', 'InnoDB' );
 
-			$table->addColumn( 'id', 'integer', ['autoincrement' => true] );
+			$table->addColumn( 'id', 'integer', ['autoincrement' => true, 'customSchemaOptions' => ['unique' => true]] );
 			$table->addColumn( 'prodid', 'integer', [] );
 			$table->addColumn( 'siteid', 'string', ['length' => 255] );
 			$table->addColumn( 'langid', 'string', ['length' => 5, 'notnull' => false] );
