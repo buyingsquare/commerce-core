@@ -33,14 +33,7 @@ class IndexCreateSQLSrvFulltext extends \Aimeos\MW\Setup\Task\Base
 		$this->msg( 'Creating full text index on "mshop_index_text.content" for SQL Server', 0 );
 
 		$schema = $this->getSchema( 'db-product' );
-echo 'name: ' . $schema->getName() . PHP_EOL;
-echo 'exists: ' . ( $schema->tableExists( 'mshop_index_text' ) ? 'true' : 'false') . PHP_EOL;
 
-$conn = $this->acquire( 'db-product' );
-$result = $conn->create( 'select * from INFORMATION_SCHEMA.TABLES' )->execute();
-while( $row = $result->fetch() ) {
-	print_r( $row );
-}
 $result = $conn->create( 'select * from sys.indexes where object_id = OBJECT_ID(\'mshop_index_text\')' )->execute();
 while( $row = $result->fetch() ) {
 	print_r( $row );
@@ -62,9 +55,14 @@ echo $sql . PHP_EOL;
 			}
 			catch( \Aimeos\MW\Setup\Exception $e )
 			{
-				$sql = 'select name from sys.indexes where object_id = OBJECT_ID(\'mshop_index_text\') AND is_primary_key = 1';
+				$sql = sprintf( '
+					SELECT name FROM sys.indexes
+					WHERE object_id = OBJECT_ID(\'%1$s.mshop_index_text\') AND is_primary_key = 1
+				', $schema->getDBName() );
+echo $sql . PHP_EOL;
 				$name = $this->getValue( $sql, 'name', 'db-product' );
 
+echo 'fts installed: ' . $this->getValue( 'SELECT SERVERPROPERTY(\'IsFullTextInstalled\') as prop', 'prop', 'db-product' ) . PHP_EOL;
 echo 'CREATE FULLTEXT CATALOG "aimeos"' . PHP_EOL;
 				$this->execute( 'CREATE FULLTEXT CATALOG "aimeos"', 'db-product' );
 echo 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX ' . $name . ' ON "aimeos"' . PHP_EOL;
