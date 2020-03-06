@@ -47,7 +47,7 @@ while( $row = $result->fetch() ) {
 }
 $this->release( $conn, 'db-product' );
 
-		if( $schema->getName() === 'sqlsrv' && $schema->tableExists( 'mshop_index_text' ) )
+		if( $schema->getName() === 'sqlsrv' /*&& $schema->tableExists( 'mshop_index_text' )*/ )
 		{
 			try
 			{
