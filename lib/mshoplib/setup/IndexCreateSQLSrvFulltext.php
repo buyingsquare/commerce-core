@@ -64,8 +64,8 @@ echo $sql . PHP_EOL;
 			{
 echo 'CREATE FULLTEXT CATALOG "aimeos"' . PHP_EOL;
 				$this->execute( 'CREATE FULLTEXT CATALOG "aimeos"', 'db-product' );
-echo 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX PK__mshop_in__3213E83F35AFB77C ON "aimeos"' . PHP_EOL;
-				$this->execute( 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX PK__mshop_in__3213E83F35AFB77C ON "aimeos"', 'db-product' );
+echo 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX PK__mshop_in__3213E83FA26BC3F7 ON "aimeos"' . PHP_EOL;
+				$this->execute( 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX PK__mshop_in__3213E83FA26BC3F7 ON "aimeos"', 'db-product' );
 
 				return $this->status( 'done' );
 			}
