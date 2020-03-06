@@ -21,7 +21,7 @@ return array(
 
 			$table->addColumn( 'prodid', 'integer', [] );
 			$table->addColumn( 'siteid', 'string', ['length' => 255] );
-			$table->addColumn( 'attrid', 'string', ['length' => 36, 'notnull' => false, 'customSchemaOptions' => ['charset' => 'binary']] );
+			$table->addColumn( 'attrid', 'string', ['length' => 36, 'customSchemaOptions' => ['charset' => 'binary']] );
 			$table->addColumn( 'listtype', 'string', array( 'length' => 64, 'customSchemaOptions' => ['charset' => 'binary'] ) );
 			$table->addColumn( 'type', 'string', array( 'length' => 64, 'customSchemaOptions' => ['charset' => 'binary'] ) );
 			$table->addColumn( 'code', 'string', array( 'length' => 255, 'customSchemaOptions' => ['charset' => 'binary'] ) );
@@ -89,6 +89,7 @@ return array(
 			$table = $schema->createTable( 'mshop_index_text' );
 			$table->addOption( 'engine', 'InnoDB' );
 
+			$table->addColumn( 'id', 'integer', ['autoincrement' => true] );
 			$table->addColumn( 'prodid', 'integer', [] );
 			$table->addColumn( 'siteid', 'string', ['length' => 255] );
 			$table->addColumn( 'langid', 'string', ['length' => 5, 'notnull' => false] );
@@ -97,6 +98,7 @@ return array(
 			$table->addColumn( 'content', 'text', ['length' => 0xffffff] );
 			$table->addColumn( 'mtime', 'datetime', [] );
 
+			$table->setPrimaryKey( ['id'], 'pk_msindte_id' );
 			$table->addUniqueIndex( ['prodid', 'siteid', 'langid', 'url'], 'unq_msindte_pid_sid_lid_url' );
 			$table->addIndex( ['prodid', 'siteid', 'langid', 'name'], 'idx_msindte_pid_sid_lid_name' );
 

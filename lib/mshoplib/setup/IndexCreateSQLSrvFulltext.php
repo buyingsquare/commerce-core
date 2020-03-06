@@ -30,14 +30,18 @@ class IndexCreateSQLSrvFulltext extends \Aimeos\MW\Setup\Task\Base
 	 */
 	public function migrate()
 	{
-/*		$this->msg( 'Creating full text index on "mshop_index_text.content" for SQL Server', 0 );
+		$this->msg( 'Creating full text index on "mshop_index_text.content" for SQL Server', 0 );
 
 		$schema = $this->getSchema( 'db-product' );
 echo 'name: ' . $schema->getName() . PHP_EOL;
-echo 'exists: ' . ((int) $schema->tableExists( 'mshop_index_text' )) . PHP_EOL;
+echo 'exists: ' . ( $schema->tableExists( 'mshop_index_text' ) ? 'true' : 'false') . PHP_EOL;
 
 $conn = $this->acquire( 'db-product' );
 $result = $conn->create( 'sp_help mshop_index_text' )->execute();
+while( $row = $result->fetch() ) {
+	print_r( $row );
+}
+$result = $conn->create( 'select * from sys.indexes where object_id = OBJECT_ID(\'mshop_index_text\')' )->execute();
 while( $row = $result->fetch() ) {
 	print_r( $row );
 }
@@ -58,13 +62,15 @@ echo $sql . PHP_EOL;
 			}
 			catch( \Aimeos\MW\Setup\Exception $e )
 			{
-				$this->execute( 'CREATE FULLTEXT CATALOG aimeos AS DEFAULT', 'db-product' );
-				$this->execute( 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX PK__mshop_in__3213E83F35AFB77C ON aimeos', 'db-product' );
+echo 'CREATE FULLTEXT CATALOG "aimeos"' . PHP_EOL;
+				$this->execute( 'CREATE FULLTEXT CATALOG "aimeos"', 'db-product' );
+echo 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX PK__mshop_in__3213E83F35AFB77C ON "aimeos"' . PHP_EOL;
+				$this->execute( 'CREATE FULLTEXT INDEX ON "mshop_index_text" ("content") KEY INDEX PK__mshop_in__3213E83F35AFB77C ON "aimeos"', 'db-product' );
 
 				return $this->status( 'done' );
 			}
 		}
 
 		$this->status( 'OK' );
-	*/	}
+	}
 }
