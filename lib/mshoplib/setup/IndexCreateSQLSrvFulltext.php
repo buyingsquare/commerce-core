@@ -37,7 +37,7 @@ echo 'name: ' . $schema->getName() . PHP_EOL;
 echo 'exists: ' . ( $schema->tableExists( 'mshop_index_text' ) ? 'true' : 'false') . PHP_EOL;
 
 $conn = $this->acquire( 'db-product' );
-$result = $conn->create( 'sp_help mshop_index_text' )->execute();
+$result = $conn->create( 'select * from INFORMATION_SCHEMA.TABLES' )->execute();
 while( $row = $result->fetch() ) {
 	print_r( $row );
 }
