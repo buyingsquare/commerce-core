@@ -28,7 +28,7 @@ class Pgsql extends \Aimeos\MW\Setup\DBSchema\InformationSchema
 	 */
 	public function constraintExists( string $tablename, string $constraintname ) : bool
 	{
-		if( $result = parent::constraintExists( $tablename, $constraintname ) === false )
+		if( ( $result = parent::constraintExists( $tablename, $constraintname ) ) === false )
 		{
 			$sql = "
 				SELECT indexname
@@ -38,13 +38,15 @@ class Pgsql extends \Aimeos\MW\Setup\DBSchema\InformationSchema
 					AND indexname = ?
 			";
 
+			$conn = $this->acquire();
+
 			$stmt = $conn->create( $sql );
 			$stmt->bind( 1, $tablename );
 			$stmt->bind( 2, $constraintname );
 			$result = $stmt->execute()->fetch();
-		}
 
-		$this->release( $conn );
+			$this->release( $conn );
+		}
 
 		return $result ? true : false;
 	}
