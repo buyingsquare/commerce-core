@@ -51,7 +51,7 @@ return array(
 
 			$table->addColumn( 'id', 'integer', array( 'autoincrement' => true ) );
 			$table->addColumn( 'parentid', 'integer', ['notnull' => false] );
-			$table->addColumn( 'siteid', 'string', ['length' => 255] );
+			$table->addColumn( 'siteid', 'string', ['length' => 255, 'notnull' => false] );
 			$table->addColumn( 'code', 'string', array( 'length' => 255, 'customSchemaOptions' => ['charset' => 'binary'] ) );
 			$table->addColumn( 'label', 'string', array( 'length' => 255 ) );
 			$table->addColumn( 'config', 'text', array( 'default' => '', 'length' => 0xffff ) );
@@ -77,7 +77,7 @@ return array(
 			$table = $schema->createTable( 'mshop_locale' );
 
 			$table->addColumn( 'id', 'integer', array( 'autoincrement' => true ) );
-			$table->addColumn( 'siteid', 'string', ['length' => 255] );
+			$table->addColumn( 'siteid', 'string', ['length' => 255, 'notnull' => false] );
 			$table->addColumn( 'langid', 'string', array( 'length' => 5 ) );
 			$table->addColumn( 'currencyid', 'string', array( 'length' => 3 ) );
 			$table->addColumn( 'pos', 'integer', [] );
