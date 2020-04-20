@@ -17,7 +17,10 @@ define('LARAVEL_START', microtime(true));
 
 require __DIR__.'/vendor/autoload.php';
 
-$app = require_once __DIR__.'/bootstrap/app.php';
+$file_server_path = realpath(__FILE__);
+$php_filename = basename(__FILE__);
+$server_path = str_replace(basename(__FILE__), '', $file_server_path);
+$app = require_once $server_path.'bootstrap/app.php';
 
 /*
 |--------------------------------------------------------------------------
