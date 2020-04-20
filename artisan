@@ -17,7 +17,7 @@ $file_server_path = realpath(__FILE__);
 $php_filename = basename(__FILE__);
 $server_path = str_replace(basename(__FILE__), '', $file_server_path);
 
-if(strpos($server_path, 'vendor') !== false) {
+if (strpos($server_path, 'vendor') !== false) {
     require $server_path.'../../autoload.php';
     $app = require_once $server_path.'bootstrap/app.php';
 } else {
@@ -45,7 +45,7 @@ $status = $kernel->handle(
 
 /*
 |--------------------------------------------------------------------------
-| Shutdown The Application
+| Shutdown The Application & Copy '.env' file
 |--------------------------------------------------------------------------
 |
 | Once Artisan has finished running, we will fire off the shutdown events
@@ -55,5 +55,9 @@ $status = $kernel->handle(
 */
 
 $kernel->terminate($input, $status);
+
+if (strpos($server_path, 'vendor') !== false) {
+    copy($server_path.'.env', $server_path.'../../../.env');
+}
 
 exit($status);
