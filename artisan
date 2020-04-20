@@ -1,6 +1,18 @@
 #!/usr/bin/env php
 <?php
 
+$is_exc_from_vendor = false;
+
+$file_server_path = realpath(__FILE__);
+$php_filename = basename(__FILE__);
+$server_path = str_replace(basename(__FILE__), '', $file_server_path);
+
+if (strpos($server_path, 'vendor') !== false) {
+    $is_exc_from_vendor = true;
+} else {
+    $is_exc_from_vendor = false;
+}
+
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -13,11 +25,7 @@
 |
 */
 
-$file_server_path = realpath(__FILE__);
-$php_filename = basename(__FILE__);
-$server_path = str_replace(basename(__FILE__), '', $file_server_path);
-
-if (strpos($server_path, 'vendor') !== false) {
+if ($is_exc_from_vendor) {
     require $server_path.'../../autoload.php';
     $app = require_once $server_path.'bootstrap/app.php';
 } else {
@@ -56,7 +64,7 @@ $status = $kernel->handle(
 
 $kernel->terminate($input, $status);
 
-if (strpos($server_path, 'vendor') !== false) {
+if ($is_exc_from_vendor) {
     copy($server_path.'.env', $server_path.'../../../.env');
 }
 
