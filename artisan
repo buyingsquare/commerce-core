@@ -1,8 +1,6 @@
 #!/usr/bin/env php
 <?php
 
-define('LARAVEL_START', microtime(true));
-
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader
@@ -19,8 +17,13 @@ $file_server_path = realpath(__FILE__);
 $php_filename = basename(__FILE__);
 $server_path = str_replace(basename(__FILE__), '', $file_server_path);
 
-require $server_path.'vendor/autoload.php';
-$app = require_once $server_path.'bootstrap/app.php';
+if(strpos($server_path, 'vendor') !== false) {
+    require $server_path.'../../autoload.php';
+    $app = require_once $server_path.'bootstrap/app.php';
+} else {
+    require $server_path.'vendor/autoload.php';
+    $app = require_once $server_path.'bootstrap/app.php';
+}
 
 /*
 |--------------------------------------------------------------------------

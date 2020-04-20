@@ -81,7 +81,9 @@
 		"post-update-cmd": [
 			"@php artisan key:generate --ansi",
 			"App\\Composer::configure",
-			"@php artisan migrate"
+			"@php artisan migrate",
+			"App\\Composer::setup",
+			"App\\Composer::account"
 		]
 	}
 }
