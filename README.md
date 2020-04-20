@@ -38,6 +38,8 @@ integration into existing systems, like content management, customer relationshi
 management or enterprise resource planning systems. Additionally, Aimeos perfectly
 fits as base for portals or market places.
 
+## 
+
 ## Links
 
 * [Web site](https://aimeos.org/)

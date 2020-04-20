@@ -19,3 +19,5 @@ confdoc.ser
 .buildpath
 .project
 .settings/
+.env
+.idea
