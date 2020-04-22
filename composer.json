@@ -75,10 +75,8 @@
 		]
 	},
 	"scripts": {
-		"pre-update-cmd": [
-			"@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
-		],
 		"post-update-cmd": [
+			"@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
 			"@php artisan key:generate --ansi",
 			"App\\Composer::configure",
 			"@php artisan migrate",
