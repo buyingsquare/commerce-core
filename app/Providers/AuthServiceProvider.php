@@ -29,7 +29,7 @@ class AuthServiceProvider extends ServiceProvider
             if( isset( $user->superuser ) && $user->superuser ) {
                 return true;
             }
-            return app( '\Aimeos\Shop\Base\Support' )->checkUserGroup( $user, $roles );
+            return app( '\App\Base\Support' )->checkUserGroup( $user, $roles );
         });
     }
 }

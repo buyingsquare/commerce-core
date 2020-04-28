@@ -36,7 +36,7 @@ class ClearCommand extends AbstractCommand
 	 */
 	public function handle()
 	{
-		$context = $this->getLaravel()->make( 'Aimeos\Shop\Base\Context' )->get( false, 'command' );
+		$context = $this->getLaravel()->make( '\App\Base\Context' )->get( false, 'command' );
 		$context->setEditor( 'aimeos:clear' );
 
 		$localeManager = \Aimeos\MShop::create( $context, 'locale' );
