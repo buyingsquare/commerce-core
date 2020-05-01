@@ -4,8 +4,6 @@
  * Common resource configuration file
  */
 
-$_ENV = \Dotenv\Dotenv::create(__DIR__.'/../')->load();
-
 return array(
 
 	// default database configuration

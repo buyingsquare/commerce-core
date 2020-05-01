@@ -19,7 +19,6 @@ set_error_handler( function( $severity, $message, $file, $line ) {
 ini_set( 'display_errors', 1 );
 date_default_timezone_set( 'UTC' );
 
-
 /**
  * Returns the command options given by the user
  *
@@ -193,8 +192,9 @@ try
 		$tplsite = 'default';
 	}
 
-
 	require 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
+    $envpath = ( isset( $options['envpath'] ) ? $options['envpath'] : __DIR__ );
+    $_ENV = \Dotenv\Dotenv::create($envpath)->load();
 
 	$aimeos = new \Aimeos\Bootstrap( ( isset( $options['extdir'] ) ? (array) $options['extdir'] : array() ) );
 	$taskPaths = $aimeos->getSetupPaths( $tplsite );
