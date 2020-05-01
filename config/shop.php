@@ -18,7 +18,6 @@ return [
 		// 'update' => [],
 	],
 
-
 	'page' => [
 		// Docs: https://aimeos.org/docs/Laravel/Adapt_pages
 		// Hint: catalog/filter is also available as single 'catalog/tree', 'catalog/search', 'catalog/attribute'

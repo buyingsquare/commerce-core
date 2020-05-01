@@ -4,28 +4,30 @@
  * Common resource configuration file
  */
 
+$_ENV = \Dotenv\Dotenv::create(__DIR__.'/../')->load();
+
 return array(
 
 	// default database configuration
 	'db' => array(
 
 		// database adapter (e.g 'mysql', 'pgsql', etc.)
-		'adapter' => 'mysql',
+		'adapter' => $_ENV['DB_CONNECTION'],
 
 		// database server name, IP address or path to local (socket) file
-		'host' => 'localhost',
+		'host' => $_ENV['DB_HOST'],
 
 		// database server port
-		'port' => 3306,
+		'port' => $_ENV['DB_PORT'],
 
 		// name of the database to use
-		'database' => 'aimeos',
+		'database' => $_ENV['DB_DATABASE'],
 
 		// name of the database account used for connecting
-		'username' => 'aimeos',
+		'username' => $_ENV['DB_USERNAME'],
 
 		// secret password
-		'password' => '',
+		'password' => $_ENV['DB_PASSWORD'],
 
 		// SQL statements executed immediately after connecting to the database server
 		'stmt' => array( "SET SESSIOn sort_buffer_size=2097144; SET NAMES 'utf8'; SET SESSION sql_mode='ANSI'" ),
