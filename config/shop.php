@@ -102,9 +102,17 @@ return [
 		],
 	],
 
-	'mshop' => [
-	],
-
+    'mshop' => [
+        'customer' => [
+            'manager' => [
+                'name' => 'Laravel',
+                'password' => [
+                    'name' => 'Bcrypt',
+                ],
+                'salt' => $_ENV['APP_KEY']
+            ]
+        ]
+    ],
 
 	'command' => [
 	],

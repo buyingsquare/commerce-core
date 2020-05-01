@@ -75,12 +75,13 @@
 		]
 	},
 	"scripts": {
-		"post-update-cmd": [
+		"post-install-cmd": [
 			"@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
 			"@php artisan key:generate --ansi",
 			"App\\Composer::configure",
 			"@php artisan migrate",
-			"App\\Composer::setup"
+			"App\\Composer::setup",
+			"App\\Composer::account"
 		]
 	}
 }

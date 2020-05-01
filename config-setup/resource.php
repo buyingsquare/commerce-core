@@ -59,5 +59,5 @@ return array(
 
 		// use database configuration from resource "db"
 		'db' => 'db',
-	),
+	)
 );

@@ -281,7 +281,7 @@ return array(
 	'mshop' => array(
 		'customer' => array(
 			'manager' => array(
-				'name' => 'Laravel',
+				'name' => 'Standard',
 				'password' => array(
 					'name' => 'Bcrypt',
 				),

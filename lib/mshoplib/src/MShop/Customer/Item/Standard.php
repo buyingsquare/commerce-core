@@ -237,6 +237,21 @@ class Standard extends Base implements Iface
 		return parent::isAvailable() && $this->getStatus() > 0;
 	}
 
+    /**
+     * Verify the password of the customer item.
+     *
+     * @param string $value password of the customer item
+     * @return bool Verify for checking password
+     */
+    public function isVerify( string $value ) : bool
+    {
+        if( !empty($this->getPassword()) && $this->helper !== null ) {
+            return $this->helper->verify( $value, $this->getPassword(), $this->salt );
+        } else {
+            return false;
+        }
+    }
+
 
 	/*
 	 * Sets the item values from the given array and removes that entries from the list

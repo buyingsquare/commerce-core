@@ -55,6 +55,7 @@ abstract class Base
 		 * @see mshop/customer/manager/password/name
 		 * @sse mshop/customer/manager/password/options
 		 */
+
 		$this->salt = $context->getConfig()->get( 'mshop/customer/manager/salt', 'mshop' );
 	}
 

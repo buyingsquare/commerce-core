@@ -33,6 +33,10 @@ class Bcrypt implements \Aimeos\MShop\Common\Helper\Password\Iface
 			throw new \Aimeos\MShop\Exception( 'To use the BCrypt encoder, you need to upgrade to PHP 5.5 or install the "ircmaxell/password-compat" via Composer' );
 		}
 
+        if( !function_exists( 'password_verify' ) ) {
+            throw new \Aimeos\MShop\Exception( 'To use the BCrypt verify, you need to upgrade to PHP 5.5 or install the "ircmaxell/password-compat" via Composer' );
+        }
+
 		$this->options = $options;
 	}
 
@@ -46,8 +50,19 @@ class Bcrypt implements \Aimeos\MShop\Common\Helper\Password\Iface
 	 */
 	public function encode( string $password, string $salt = null ) : string
 	{
-		$options = $this->options;
-
-		return password_hash( $password, PASSWORD_BCRYPT, $options );
+	    return password_hash( $salt.$password.$salt, PASSWORD_BCRYPT );
 	}
+
+    /**
+     * Returns the result to correct password.
+     *
+     * @param string $password Clear text password string
+     * @param string $hash Encode text password string
+     * @param string|null $salt Password salt
+     * @return bool Verify for checking password
+     */
+    public function verify( string $password, string $hash, string $salt = null ) : bool
+    {
+        return password_verify( $salt.$password.$salt, $hash );
+    }
 }
