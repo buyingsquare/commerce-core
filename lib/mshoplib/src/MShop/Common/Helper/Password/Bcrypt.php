@@ -50,7 +50,7 @@ class Bcrypt implements \Aimeos\MShop\Common\Helper\Password\Iface
 	 */
 	public function encode( string $password, string $salt = null ) : string
 	{
-	    return password_hash( $salt.$password.$salt, PASSWORD_BCRYPT );
+	    return password_hash( $salt.$password, PASSWORD_BCRYPT );
 	}
 
     /**
@@ -63,6 +63,6 @@ class Bcrypt implements \Aimeos\MShop\Common\Helper\Password\Iface
      */
     public function verify( string $password, string $hash, string $salt = null ) : bool
     {
-        return password_verify( $salt.$password.$salt, $hash );
+        return password_verify( $salt.$password, $hash );
     }
 }
