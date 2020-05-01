@@ -14,9 +14,6 @@
 	"minimum-stability": "dev",
 	"require": {
 		"php": "~7.1",
-		"fideloper/proxy": "^4.0",
-		"laravel/framework": "^6.0",
-		"laravel/tinker": "^1.0",
 		"ext-curl": "*",
 		"ext-dom": "*",
 		"ext-fileinfo": "*",
@@ -28,8 +25,6 @@
 		"ext-PDO": "*",
 		"ext-zip": "*",
 		"buyingsquare/commerce-lib-map": "~1.5",
-		"buyingsquare/commerce-ext-laravel": "dev-master",
-		"buyingsquare/commerce-ext-swiftmailer": "dev-master",
 		"doctrine/dbal": "~2.0",
 		"psr/http-message": "~1.0",
 		"nyholm/psr7": "^1.2"
@@ -46,8 +41,7 @@
 			"Aimeos\\MShop\\": "lib/mshoplib/src/MShop/",
 			"Aimeos\\MAdmin\\": "lib/mshoplib/src/MAdmin/",
 			"Aimeos\\Controller\\Common\\": "controller/common/src/Controller/Common/",
-			"Aimeos\\Controller\\Jobs\\": "controller/common/src/Controller/Jobs/",
-			"App\\": "app/"
+			"Aimeos\\Controller\\Jobs\\": "controller/common/src/Controller/Jobs/"
 		},
 		"classmap": [
 			"lib/mwlib/src",
@@ -64,24 +58,13 @@
 			"Aimeos\\MShop\\": "lib/mshoplib/tests/MShop/",
 			"Aimeos\\MAdmin\\": "lib/mshoplib/tests/MAdmin/",
 			"Aimeos\\Controller\\Common\\": "controller/common/tests/Controller/Common/",
-			"Aimeos\\Controller\\Jobs\\": "controller/common/tests/Controller/Jobs/",
-			"App\\": "app/"
+			"Aimeos\\Controller\\Jobs\\": "controller/common/tests/Controller/Jobs/"
 		},
 		"classmap": [
 			"lib/mwlib/tests",
 			"lib/mshoplib/tests",
 			"controller/common/tests",
 			"controller/jobs/tests"
-		]
-	},
-	"scripts": {
-		"post-install-cmd": [
-			"@php -r \"file_exists('.env') || copy('.env.example', '.env');\"",
-			"@php artisan key:generate --ansi",
-			"App\\Composer::configure",
-			"@php artisan migrate",
-			"App\\Composer::setup",
-			"App\\Composer::account"
 		]
 	}
 }
