@@ -31,6 +31,7 @@ class Standard implements \Aimeos\MShop\Context\Item\Iface
 	private $mqueue;
 	private $process;
 	private $session;
+    private $scsession;
 	private $view;
 	private $user;
 	private $groups;
@@ -518,6 +519,34 @@ class Standard implements \Aimeos\MShop\Context\Item\Iface
 
 		return $this->session;
 	}
+
+    /**
+     * Sets the secure session object.
+     *
+     * @param \Aimeos\MW\Session\Iface $session Session object
+     * @return \Aimeos\MShop\Context\Item\Iface Context item for chaining method calls
+     */
+    public function setSecureSession( \Aimeos\MW\Session\Iface $session ) : \Aimeos\MShop\Context\Item\Iface
+    {
+        $this->scsession = $session;
+
+        return $this;
+    }
+
+
+    /**
+     * Returns the secure session object.
+     *
+     * @return \Aimeos\MW\Session\Iface Session object
+     */
+    public function getSecureSession() : \Aimeos\MW\Session\Iface
+    {
+        if( !isset( $this->scsession ) ) {
+            throw new \Aimeos\MShop\Exception( sprintf( 'Session object not available' ) );
+        }
+
+        return $this->scsession;
+    }
 
 
 	/**
