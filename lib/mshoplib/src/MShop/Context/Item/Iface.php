@@ -220,19 +220,19 @@ interface Iface
 	public function getSession() : \Aimeos\MW\Session\Iface;
 
     /**
-     * Sets the secure session object.
+     * Sets the cookie object.
      *
-     * @param \Aimeos\MW\Session\Iface $session Session object
+     * @param \Aimeos\MW\Cookie\Iface $cookie Cookie object
      * @return \Aimeos\MShop\Context\Item\Iface Context item for chaining method calls
      */
-    public function setSecureSession( \Aimeos\MW\Session\Iface $session ) : \Aimeos\MShop\Context\Item\Iface;
+    public function setCookie( \Aimeos\MW\Cookie\Iface $cookie ) : \Aimeos\MShop\Context\Item\Iface;
 
     /**
-     * Returns the secure session object.
+     * Returns the cookie object.
      *
-     * @return \Aimeos\MW\Session\Iface Session object
+     * @return \Aimeos\MW\Cookie\Iface Cookie object
      */
-    public function getSecureSession() : \Aimeos\MW\Session\Iface;
+    public function getCookie() : \Aimeos\MW\Cookie\Iface;
 
 	/**
 	 * Sets the view object.

@@ -31,7 +31,7 @@ class Standard implements \Aimeos\MShop\Context\Item\Iface
 	private $mqueue;
 	private $process;
 	private $session;
-    private $scsession;
+    private $cookie;
 	private $view;
 	private $user;
 	private $groups;
@@ -54,6 +54,7 @@ class Standard implements \Aimeos\MShop\Context\Item\Iface
 		$this->mqueue = null;
 		$this->process = null;
 		$this->session = null;
+		$this->cookie = null;
 		$this->view = null;
 		$this->i18n = [];
 	}
@@ -73,6 +74,7 @@ class Standard implements \Aimeos\MShop\Context\Item\Iface
 		$this->mqueue = ( isset( $this->mqueue ) ? clone $this->mqueue : null );
 		$this->process = ( isset( $this->process ) ? clone $this->process : null );
 		$this->session = ( isset( $this->session ) ? clone $this->session : null );
+        $this->cookie = ( isset( $this->cookie ) ? clone $this->cookie : null );
 		// view is always cloned
 
 		foreach( $this->i18n as $locale => $object ) {
@@ -87,8 +89,9 @@ class Standard implements \Aimeos\MShop\Context\Item\Iface
 	public function __sleep() : array
 	{
 		$objects = array(
-			$this->cache, $this->config, $this->dbm, $this->fsm, $this->locale, $this->logger,
-			$this->mail, $this->mqueue, $this->process, $this->session, $this->view
+			$this->cache, $this->config, $this->dbm, $this->fsm, $this->locale,
+            $this->logger, $this->mail, $this->mqueue, $this->process, $this->session,
+            $this->cookie, $this->view
 		);
 
 		foreach( $objects as $object )
@@ -111,7 +114,8 @@ class Standard implements \Aimeos\MShop\Context\Item\Iface
 	{
 		$objects = array(
 			$this, $this->cache, $this->config, $this->dbm, $this->fsm, $this->locale,
-			$this->logger, $this->mail, $this->mqueue, $this->process, $this->session, $this->view
+			$this->logger, $this->mail, $this->mqueue, $this->process, $this->session,
+            $this->cookie, $this->view
 		);
 
 		return md5( $this->hash( $objects ) );
@@ -521,31 +525,31 @@ class Standard implements \Aimeos\MShop\Context\Item\Iface
 	}
 
     /**
-     * Sets the secure session object.
+     * Sets the cookie object.
      *
-     * @param \Aimeos\MW\Session\Iface $session Session object
+     * @param \Aimeos\MW\Cookie\Iface $cookie Cookie object
      * @return \Aimeos\MShop\Context\Item\Iface Context item for chaining method calls
      */
-    public function setSecureSession( \Aimeos\MW\Session\Iface $session ) : \Aimeos\MShop\Context\Item\Iface
+    public function setCookie( \Aimeos\MW\Cookie\Iface $cookie ) : \Aimeos\MShop\Context\Item\Iface
     {
-        $this->scsession = $session;
+        $this->cookie = $cookie;
 
         return $this;
     }
 
 
     /**
-     * Returns the secure session object.
+     * Returns the cookie object.
      *
-     * @return \Aimeos\MW\Session\Iface Session object
+     * @return \Aimeos\MW\Cookie\Iface Cookie object
      */
-    public function getSecureSession() : \Aimeos\MW\Session\Iface
+    public function getCookie() : \Aimeos\MW\Cookie\Iface
     {
-        if( !isset( $this->scsession ) ) {
+        if( !isset( $this->cookie ) ) {
             throw new \Aimeos\MShop\Exception( sprintf( 'Session object not available' ) );
         }
 
-        return $this->scsession;
+        return $this->cookie;
     }
 
 

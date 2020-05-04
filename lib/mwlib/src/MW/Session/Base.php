@@ -68,4 +68,29 @@ abstract class Base implements \Aimeos\MW\Session\Iface
 
 		return $this;
 	}
+
+
+    /**
+     * Return session id.
+     * @return string session id
+     */
+    public function getId() : string
+    {
+        if (session_status() == PHP_SESSION_ACTIVE) {
+            return session_id();
+        }
+
+        return '';
+    }
+
+
+    /**
+     * Remove all data from the session.
+     */
+    public function clear()
+    {
+        if (session_status() == PHP_SESSION_ACTIVE) {
+            session_destroy();
+        }
+    }
 }
