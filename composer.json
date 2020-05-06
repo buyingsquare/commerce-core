@@ -24,7 +24,7 @@
 		"ext-pcre": "*",
 		"ext-PDO": "*",
 		"ext-zip": "*",
-		"buyingsquare/commerce-lib-map": "~1.5",
+		"buyingsquare/commerce-lib-map": "^1.3",
 		"doctrine/dbal": "~2.0",
 		"psr/http-message": "~1.0",
 		"nyholm/psr7": "^1.2",
